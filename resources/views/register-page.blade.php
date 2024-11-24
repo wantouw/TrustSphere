@@ -16,12 +16,12 @@
               <input type="email" class="form-control" id="email" aria-describedby="email" name="email" placeholder="Enter Email" value="{{ old('email') }}">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
               </div>
               <div class="form-group">
                 <label for="password_confirmation">Confirm Password</label>
-                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password">
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm Password" >
             </div>
             <div class="form-group">
                 <label for="dob">Date Of Birth</label>

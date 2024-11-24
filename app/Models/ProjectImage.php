@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProjectImage extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'project_id',
+        'image_url'
+    ];
     public function project() : BelongsTo {
-        return $this->belongsTo(Project::class. 'project_id', 'id');
+        return $this->belongsTo(Project::class, 'project_id', 'id');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_likes', function (Blueprint $table) {
-            $table->id();
+            $table->primary(columns: ['project_id', 'user_id']);
             $table->timestamps();
             $table->unsignedBigInteger(column: 'project_id');
             $table->foreign('project_id')->references('id')->on('projects')

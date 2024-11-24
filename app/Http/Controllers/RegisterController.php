@@ -13,20 +13,21 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request) {
-        // $validated = $request->validate([
-        //     'name' => 'required|unique:users,name|max:40',
-        //     'email' => 'required|unique:users,email|email',
-        //     'bio' => 'required|string|max:500',
-        //     'dob' => [
-        //         'required',
-        //         'date',
-        //         'before_or_equal:' . now()->subYears(18)->toDateString(),
-        //     ],
-        //     'profile_picture' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
-        //     'password' => 'required|string|min:8|confirmed'
-        // ],[
-        //     'dob.before_or_equal' => 'You must be at least 18 years old.',
-        // ]);
+        $validated = $request->validate([
+            'name' => 'required|unique:users,name|max:40',
+            'email' => 'required|unique:users,email|email',
+            'bio' => 'required|string|max:500',
+            'dob' => [
+                'required',
+                'date',
+                'before_or_equal:' . now()->subYears(18)->toDateString(),
+            ],
+            'profile_picture' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
+            'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required|string|min:8',
+        ],[
+            'dob.before_or_equal' => 'You must be at least 18 years old.',
+        ]);
 
         $user = new User();
         $user->name = $request->name;
@@ -42,13 +43,13 @@ class RegisterController extends Controller
         if ($request->hasFile('profile_picture')) {
             $image = $request->file('profile_picture');
             $customName = $user->id . '.' . $image->getClientOriginalExtension();
-            $filePath = $image->storeAs('images/profile_pictures', $customName, 'public'); 
-
+            $filePath = $image->storeAs('images/profile_pictures', $customName, 'public');
             $user->profile_picture = $customName;
             $user->save();
         }
 
         $user->save();
+
         return redirect()->route('login_page')->with('success', 'Registration successful!');
 
     }

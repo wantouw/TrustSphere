@@ -13,7 +13,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('sender_id');
             $table->foreign('sender_id')->references('id')->on('users')
@@ -24,6 +23,7 @@ return new class extends Migration
             ->onDelete('cascade')->onUpdate('cascade');
             $table->enum('type', ['negative', 'positive']);
             $table->timestamp('timestamp')->default(Carbon::now());
+            $table->primary(columns: ['project_id', 'sender_id']);
         });
     }
 

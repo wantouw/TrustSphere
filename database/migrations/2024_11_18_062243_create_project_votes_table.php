@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('project_votes', function (Blueprint $table) {
-            $table->id();
+
             $table->timestamps();
             $table->unsignedBigInteger('project_id');
             $table->foreign('project_id')->references('id')->on('projects')
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->enum('type' ,['positive', 'negative']);
+            $table->primary(columns: ['project_id', 'user_id']);
         });
     }
 

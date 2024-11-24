@@ -11,7 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Project extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'title',
+        'description',
+        'user_id'
+    ];
     public function user() : BelongsTo{
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
@@ -22,13 +26,13 @@ class Project extends Model
     }
 
     public function image_urls() : HasMany {
-        return $this->hasMany(ProjectImage::class. 'project_id', 'id');
+        return $this->hasMany(ProjectImage::class, 'project_id', 'id');
     }
     public function comments() : HasMany {
-        return $this->hasMany(Comment::class. 'project_id', 'id');
+        return $this->hasMany(Comment::class, 'project_id', 'id');
     }
     public function project_votes() : HasMany {
-        return $this->hasMany(ProjectVote::class. 'project_id', 'id');
+        return $this->hasMany(ProjectVote::class, 'project_id', 'id');
     }
 
     public function project_views()
