@@ -15,7 +15,7 @@
     </div>
     @include('partials.footer')
     @yield('scripts')
+    <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>
 </body>
-<script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>
 
 </html>

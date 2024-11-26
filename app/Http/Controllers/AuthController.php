@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
+class AuthController extends Controller
 {
     //
-    public function register_page(){
+    public function login_page()
+    {
+        return view('login-page');
+    }
+    public function register_page()
+    {
         return view('register-page');
     }
 
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|unique:users,name|max:40',
             'email' => 'required|unique:users,email|email',
@@ -25,7 +33,7 @@ class RegisterController extends Controller
             'profile_picture' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required|string|min:8',
-        ],[
+        ], [
             'dob.before_or_equal' => 'You must be at least 18 years old.',
         ]);
 
@@ -35,7 +43,7 @@ class RegisterController extends Controller
         $user->dob = $request->dob;
         $user->password = bcrypt($request->password);
 
-        if($request->has('bio')){
+        if ($request->has('bio')) {
             $user->bio = $request->bio;
         }
         $user->save();
@@ -51,6 +59,21 @@ class RegisterController extends Controller
         $user->save();
 
         return redirect()->route('login_page')->with('success', 'Registration successful!');
+    }
+    public function authenticate(Request $request): RedirectResponse
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('login');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
     }
 }

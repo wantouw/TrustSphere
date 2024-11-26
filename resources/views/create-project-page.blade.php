@@ -112,7 +112,7 @@
         }
 
         function createCategory(newCategoryName) {
-            fetch('http://localhost:8000/category/create', {
+            fetch('/category/create', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -179,7 +179,7 @@
                 formData.append('images[]', files[i]);
             }
 
-            fetch('http://localhost:8000/project/create', {
+            fetch('/project/create', {
                     method: 'POST',
                     headers: {
                         'X-CSRF-Token': csrf,

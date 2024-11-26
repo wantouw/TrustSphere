@@ -16,6 +16,12 @@ class ProjectController extends Controller
         return view('create-project-page', compact('categories'));
     }
 
+    public function project_detail_page(string $projectID)
+    {
+        $project = Project::find($projectID);
+        return view('project-detail-page', compact('project'));
+    }
+
     public function create_project(Request $request)
     {
         $validated = $request->validate([
