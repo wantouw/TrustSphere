@@ -211,4 +211,46 @@
     margin-top: 4px;
 }
 
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.form-row .form-group {
+    width: calc(100% / 2 - 6px);
+}
+
+.input-wrapper .input-field[type="file"] {
+    all: unset;
+    outline: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* .input-wrapper .input-field[type="file"] {
+    all: unset;
+    flex: 1;
+    padding-left: 16px;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+} */
+
+
+
+.input-wrapper .input-field[type="file"]::file-selector-button {
+    all: unset;
+    font-size: 0.9rem;
+    padding-inline: 8px;
+    background-color: var(--accent-color);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
