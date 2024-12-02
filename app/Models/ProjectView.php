@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class ProjectView extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'user_id',
+        'project_id',
+    ];
 
 }

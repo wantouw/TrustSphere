@@ -27,10 +27,7 @@
                 <label for="dob">Date Of Birth</label>
                 <input id="dob" class="form-control" type="date" name="dob" value="{{ old('dob') }}"/>
             </div>
-            <div class="form-group">
-                <label for="bio">Bio</label>
-                <input type="text" class="form-control" id="bio" aria-describedby="bio" name="bio" placeholder="Enter Bio" value="{{ old('bio') }}">
-            </div>
+            
             <div class="mb-3">
                 <label for="profile_picture" class="form-label">Profile Picture</label>
                 <input class="form-control" type="file" id="profile_picture" name="profile_picture">

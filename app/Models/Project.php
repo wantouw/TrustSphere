@@ -31,8 +31,8 @@ class Project extends Model
     public function comments() : HasMany {
         return $this->hasMany(Comment::class, 'project_id', 'id');
     }
-    public function project_votes() : HasMany {
-        return $this->hasMany(ProjectVote::class, 'project_id', 'id');
+    public function votes() : BelongsToMany {
+        return $this->belongsToMany(User::class, 'project_votes', 'project_id', 'user_id')->withPivot('type');
     }
 
     public function project_views()

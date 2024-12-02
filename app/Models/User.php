@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -50,10 +51,12 @@ class User extends Authenticatable
     public function projects() : HasMany {
         return $this->hasMany(Project::class, 'user_id', 'id');
     }
-
+    public function project_votes() : BelongsToMany {
+        return $this->belongsToMany(Project::class, 'project_votes', 'user_id', 'project_id')->withPivot('type');
+    }
     public function project_views() : BelongsToMany {
         return $this->belongsToMany(
-            ProjectView::class,
+            Project::class,
             'project_views',
             'user_id',
             'project_id',
@@ -61,10 +64,15 @@ class User extends Authenticatable
     }
     public function user_likes() : BelongsToMany {
         return $this->belongsToMany(
-            UserLike::class,
+            Project::class,
             'user_likes',
             'user_id',
             'project_id',
         );
     }
+
+    public function comment() : HasOne {
+        return $this->hasOne(Comment::class, 'sender_id', 'id');
+    }
+
 }
