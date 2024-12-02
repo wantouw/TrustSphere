@@ -1,0 +1,214 @@
+
+
+.content {
+    display: flex;
+    padding-block: 96px;
+    padding-inline: 96px;
+    gap: 42px;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(45% - 21px);
+}
+
+.form-section {
+    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content-header {
+    font-size: 1.8rem;
+}
+
+.form-header {
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding-inline: 16px;
+    padding-block: 12px;
+}
+
+.input-wrapper .icon {
+    position: absolute;
+    left: 12px;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.form-group .input-label {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.input-wrapper .input-field {
+    all: unset;
+    outline: none;
+    flex: 1;
+    border: none;
+    outline: none;
+    padding-left: 36px;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-color);
+}
+
+.input-wrapper .input-field:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.promotion-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(55% - 21px);
+    background-color: var(--accent-color);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    flex: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.submit-button {
+    margin-top: 24px;
+    padding-inline: 24px;
+    padding-block: 12px;
+    border-radius: 12px;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted-text-color);
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--text-color);
+    margin: 0 8px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--accent-color);
+    background-color: transparent;
+    color: var(--accent-color);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.promotion-container .promotion-message {
+    color: var(--surface-color);
+    font-weight: 500;
+    position: absolute;
+    font-size: 1.2rem;
+    bottom: 28px;
+    left: 28px;
+    right: 28px;
+}
+
+
+.promotion-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(55% - 21px);
+    background-color: var(--accent-color);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    flex: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.promo-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.promo-achievements {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 24px;
+    padding: 16px;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.achievement {
+    text-align: center;
+    flex: 1;
+}
+
+.achievement-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+}
+
+.separator {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: black;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.achievement-label {
+    font-size: 1rem;
+    font-weight: 400;
+    color: black;
+    margin-top: 4px;
+}
+
+

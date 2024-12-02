@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
-    /* color: red; */
+:root {
+    --accent-color: #FFAB73; /* Lighter orange, softer but vibrant */
+    --secondary-color: #FFD3B6; /* Original pastel peach */
+    --background-color: #FFFFFF; /* Pure white for a clean background */
+    --surface-color: #F8F8F8; /* Neutral light surface color */
+    --text-color: #333333; /* Dark gray for strong readability */
+    --muted-text-color: #777777; /* Softer muted gray */
+    --border-color: #E0E0E0; /* Neutral border color */
+    --success-color: #27AE60; /* Original green */
+    --warning-color: #F1C40F; /* Original yellow */
+    --error-color: #E74C3C; /* Original red */
+}ß
+
+input {
+    all: unset;
 }
+
+
+.main-container {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--surface-color);
+}
+
