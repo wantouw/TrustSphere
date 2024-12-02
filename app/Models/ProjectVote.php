@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProjectVote extends Model
 {
     use HasFactory;
-    public function project() : BelongsTo {
-        return $this->belongsTo(Project::class, 'project_id', 'id');
-    }
+    protected $fillable = [
+        'project_id',
+        'user_id',
+        'type',
+    ];
+
 }
