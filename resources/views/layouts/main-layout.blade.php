@@ -8,17 +8,25 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href={{asset('css/app.css')}}>
+    <link rel="stylesheet" href={{asset('css/navbar.css')}}>
+    @yield('css-link')
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    @include('partials.navigation-bar')
-    <div class="main-container">
-        @yield('content')
+    <div class="main-layout">
+        <div class="nav-container">
+            @include('partials.navigation-bar')
+        </div>
+        <div class="main-layout-container">
+            @yield('content')
+        </div>
     </div>
-    @include('partials.footer')
+    {{-- @include('partials.footer') --}}
     @yield('scripts')
     <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>
     <script src="https://kit.fontawesome.com/f7c4eeb796.js" crossorigin="anonymous"></script>
+    <script></script>
 </body>
 
 </html>

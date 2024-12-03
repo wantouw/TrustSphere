@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectVoteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserLikeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +20,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'home_page'])->name('home_page');
     Route::get('/project/create', [ProjectController::class, 'create_project_page'])->name('create_project_page');
+    Route::post('/like', [UserLikeController::class, 'like_project'])->name('like_project');
     Route::post('/category/create', [ProjectCategoryController::class, 'create_category'])->name('create_category');
     Route::post('/project/create', [ProjectController::class, 'create_project'])->name('create_project');
     Route::post('/comment/create', [CommentController::class, 'create_comment'])->name('create_comment');
@@ -27,3 +29,4 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/project/{project_id}', [ProjectController::class, 'project_detail_page'])->name(name: 'project_detail_page');
 Route::get('/search', [ProjectController::class, 'search_project_page'])->name('search_project');
+

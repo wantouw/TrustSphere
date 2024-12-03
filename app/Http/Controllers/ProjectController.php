@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Project;
 use App\Models\ProjectView;
 use App\Models\User;
+use App\Models\UserLike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +40,12 @@ class ProjectController extends Controller
             }
         }
         $project = $this->get_project($project_id);
-        return view('project-detail-page', compact('project'));
+        $negative_comments = Comment::where('project_id', $project_id)->where('type', 'negative')->count();
+        $positive_comments = Comment::where('project_id', $project_id)->where('type', 'positive')->count();
+        $is_liked = UserLike::where('project_id', $project_id)->where('user_id', Auth::id())->exists();
+        $reliable = ($negative_comments < $positive_comments) || ($negative_comments == 0 && $positive_comments == 0);
+
+        return view('project-detail-page', compact('project', 'reliable', 'is_liked'));
     }
 
     public function create_project(Request $request)

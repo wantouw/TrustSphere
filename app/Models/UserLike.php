@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserLike extends Model
 {
     use HasFactory;
-    
+
+    protected $fillable = [
+        'project_id',
+        'user_id',
+    ];
 }

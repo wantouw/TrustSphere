@@ -37,12 +37,12 @@ class Project extends Model
 
     public function project_views()
     {
-        return $this->belongsToMany(ProjectView::class, 'project_views', 'project_id', 'category_id');
+        return $this->belongsToMany(User::class, 'project_views', 'project_id', 'user_id');
     }
 
     public function user_likes() : BelongsToMany {
         return $this->belongsToMany(
-            UserLike::class,
+            User::class,
             'user_likes',
             'project_id',
             'user_id',

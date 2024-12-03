@@ -62,7 +62,7 @@ class User extends Authenticatable
             'project_id',
         );
     }
-    public function user_likes() : BelongsToMany {
+    public function liked_projects() : BelongsToMany {
         return $this->belongsToMany(
             Project::class,
             'user_likes',
