@@ -43,7 +43,7 @@
     align-items: center;
     border-radius: 12px;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: var(--background-color);
     padding-inline: 16px;
     padding-block: 12px;
 }
@@ -57,7 +57,8 @@
 
 .form-group .input-label {
     font-size: 0.9rem;
-    font-weight: 300;
+    font-weight: 500;
+    color: var(--muted-text-color);
 }
 
 .input-wrapper .input-field {
@@ -176,7 +177,7 @@
     align-items: center;
     margin-top: 24px;
     padding: 16px;
-    background-color: var(--background-color);
+    background-color: var(--surface-color);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
                 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -253,4 +254,63 @@
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+
+
+/* Create Project CSS Section */
+
+.promo-create-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(55% - 21px);
+    justify-content: space-between;
+    background-color: var(--accent-color);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    flex: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.promo-create-middle {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.promo-create-middle .promo-message {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--surface-color);
+}
+
+.promo-create-logo {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--background-color);
+}
+
+.promo-create-header {
+    font-size: 3.2rem;
+    font-weight: 500;
+    color: var(--background-color)
+}
+
+.promo-create-wrapper .input-field[type="file"] {
+    all: unset;
+    outline: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 28px;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-color);
+}
+
+
+
+
 

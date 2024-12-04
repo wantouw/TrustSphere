@@ -1,4 +1,4 @@
-@extends('layouts.auth-layout')
+@extends('layouts.form-layout')
 
 @section('title', 'Login To TrustSphere')
 
@@ -51,7 +51,6 @@
                     <h3 class="achievement-value">$50,000+</h3>
                     <p class="achievement-label">Funded to Projects</p>
                 </div>
-
             </div>
         </section>
     </div>

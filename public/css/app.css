@@ -14,7 +14,7 @@
     --warning-color: #F1C40F; /* Original yellow */
     --error-color: #E74C3C; /* Original red */
     --secondary-light: #e6e3e384; /* Light Gray*/
-}ß
+}
 
 input {
     all: unset;
@@ -31,7 +31,6 @@ input {
 .main-layout-container {
     width: 80%;
     min-height: 100vh;
-
 }
 
 .form-header {
