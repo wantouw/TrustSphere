@@ -1,7 +1,120 @@
+
 .sidebar-navbar{
     padding: 20px;
+    position: fixed;
+    height: 100%;
+    /* From https://css.glass */
+    /* background: rgba(248, 248, 248, 0.39);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px); */
+}
+nav {
+    width: 20%;
 }
 .brand-logo {
     padding-right: 30px;
-    padding-block: 15px;
+    font-family: olivera;
+    padding-bottom: 15px;
+    font-size: 34px;
+    margin-top: 10px;
+}
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    margin-top: 20px;
+}
+.nav-list {
+    width: 100%;
+}
+.nav-list a{
+    display: flex;
+    gap: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    align-items: center;
+    padding-block: 10px;
+    padding-inline: 8px;
+    width: 100%;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+}
+.nav-list a:hover {
+    background-color: var(--secondary-light);
+}
+.nav-list svg {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-menu .active a {
+    background-color: var(--secondary-light);
+}
+
+.menu-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 93%;
+}
+
+.profile-menu {
+    padding-block: 10px;
+    padding-inline: 8px;
+    transition: all 0.5s;
+    border-radius: 0.5rem;
+    display: flex;
+    gap: 10px;
+    width: 100% !important;
+    align-items: center;
+
+}
+
+.profile-name  {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+}
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile-menu:hover{
+    background-color: var(--secondary-light);
+}
+
+
+.username-wrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.profile-email {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+    text-align: left;
+}
+.dropdown-menu {
+    width: 300px;
+    border: none;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 1rem !important;
+    transition: all 0.3s;
+}
+
+.dropdown-item {
+    padding-inline: 14px;
+    padding-block: 12px;
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+    transition: all 0.3s;
 }

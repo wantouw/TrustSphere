@@ -52,7 +52,7 @@ class AuthController extends Controller
             $image = $request->file('profile_picture');
             $customName = $user->id . '.' . $image->getClientOriginalExtension();
             $filePath = $image->storeAs('images/profile_pictures', $customName, 'public');
-            $user->profile_picture = $customName;
+            $user->profile_picture = 'images/profile_pictures/' . $customName;
             $user->save();
         }
 

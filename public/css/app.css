@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@font-face {
+    font-family: 'olivera';
+    src: url('../fonts/Olivera_Demo.ttf') format('truetype');
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body{
+    font-family: nunito, serif !important;
+    background-color: var(--surface-color);
+}
 :root {
     --accent-color: #FFAB73; /* Lighter orange, softer but vibrant */
     --secondary-color: #FFD3B6; /* Original pastel peach */
@@ -14,6 +22,7 @@
     --warning-color: #F1C40F; /* Original yellow */
     --error-color: #E74C3C; /* Original red */
     --secondary-light: #e6e3e384; /* Light Gray*/
+    --secondary-text-color: #818181
 }ß
 
 input {
@@ -27,6 +36,7 @@ input {
 }
 .nav-container {
     width: 20%;
+    border-right: 1px solid rgba(216, 216, 216, 0.837);
 }
 .main-layout-container {
     width: 80%;

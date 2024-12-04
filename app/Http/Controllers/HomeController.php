@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     //
     public function home_page(){
-        return view('home-page');
+        $projects = Project::all();
+        return view('home-page', compact('projects'));
     }
 }

@@ -206,7 +206,7 @@ svg{
 }
 .add-comment-btn {
     background-color: var(--accent-color);
-    width: 10%;
+    width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,12 +237,13 @@ svg{
     font-size: 14px;
     font-weight: 600;
 }
-.like-btn-container svg {
-    color: gray ;
+.like-btn-container img {
+    filter: grayscale(100%);
+
 }
 
 .like-btn-container .liked {
-    color: var(--accent-color) !important;
+    filter: none;
 }
 
 .project-category-wrapper {

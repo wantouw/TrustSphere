@@ -26,7 +26,10 @@
     @yield('scripts')
     <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>
     <script src="https://kit.fontawesome.com/f7c4eeb796.js" crossorigin="anonymous"></script>
-    <script></script>
+    <script>
+
+
+    </script>
 </body>
 
 </html>
