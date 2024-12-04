@@ -1,9 +1,88 @@
-@extends('layouts.main-layout')
+@extends('layouts.form-layout')
 
 @section('title', 'Create Project')
 
+
 @section('content')
-    <div>
+    <div class="content">
+        <div class="promo-create-container">
+            <h1 class="promo-create-logo">TrustSphere.</h1>
+            <div class="promo-create-middle">
+                <h1 class="promo-create-header">Bring your ideas <br> to light.</h1>
+                <p class="promo-message">Create your project, share your vision, and turn your greatest ideas into reality
+                    with the support you deserve.</p>
+            </div>
+            <div class="promo-achievements">
+                <div class="achievement">
+                    <h3 class="achievement-value">100+</h3>
+                    <p class="achievement-label">Projects Funded</p>
+                </div>
+                <div class="separator">|</div>
+                <div class="achievement">
+                    <h3 class="achievement-value">$50,000+</h3>
+                    <p class="achievement-label">Funded to Projects</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="form-header">Create Project</div>
+            <form class="form-section" action="/project/create" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-group">
+                    <label class="input-label" for="title">Project Title</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lightbulb icon"></i> <!-- Icon for title -->
+                        <input type="text" class="form-control input-field" id="title" name="title"
+                            placeholder="Title" value="{{ old('title') }}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label" for="description">Project Description</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-pen icon"></i> <!-- Icon for description -->
+                        <textarea class="form-control input-field" id="description" name="description" placeholder="Project Description"
+                            rows="3" required>{{ old('description') }}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label" for="projectImages">Project Images</label>
+                    <div class="input-wrapper promo-create-wrapper">
+                        <i class="fa-solid fa-image icon"></i> <!-- Icon for images -->
+                        <input type="file" class="form-control input-field" id="projectImages" name="images[]" multiple>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label">Selected Categories</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-tags icon"></i> <!-- Icon for categories -->
+                        <div id="selectedCategories" class="selected-categories mb-2">
+                            <!-- Selected categories will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="input-label" for="categorySearch">Project Category</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-search icon"></i> <!-- Icon for search -->
+                        <input type="text" class="form-control input-field" id="categorySearch"
+                            placeholder="Search or type to create a new category">
+                        <div class="dropdown-menu hide" id="categorySuggestions"
+                            style="width: 100%; max-height: 200px; overflow-y: auto;">
+                            <!-- Dynamic category suggestions will be added here -->
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Create Project</button>
+            </form>
+        </div>
+    </div>
+    {{-- <div>
         <form onsubmit="event.preventDefault(); sendApiRequest();" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -38,7 +117,7 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
+    </div> --}}
 @endsection
 
 @section('scripts')

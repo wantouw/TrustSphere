@@ -1,4 +1,4 @@
-@extends('layouts.auth-layout')
+@extends('layouts.form-layout')
 
 @section('title', 'Register To TrustSphere')
 
@@ -60,8 +60,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
                 @if ($errors->any())
                     <div class="error-message">
