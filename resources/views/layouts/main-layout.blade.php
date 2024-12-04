@@ -20,6 +20,7 @@
         </div>
         <div class="main-layout-container">
             @yield('content')
+            
         </div>
     </div>
     {{-- @include('partials.footer') --}}

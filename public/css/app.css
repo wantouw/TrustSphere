@@ -8,6 +8,7 @@
 @tailwind utilities;
 body{
     font-family: nunito, serif !important;
+    box-sizing: border-box;
     background-color: var(--surface-color);
 }
 :root {
@@ -23,7 +24,7 @@ body{
     --error-color: #E74C3C; /* Original red */
     --secondary-light: #e6e3e384; /* Light Gray*/
     --secondary-text-color: #818181
-}ß
+}
 
 input {
     all: unset;
@@ -41,6 +42,9 @@ input {
 .main-layout-container {
     width: 80%;
     min-height: 100vh;
+    display: flex;
+    gap: 2vw;
+    padding: 2vw;
 }
 
 .form-header {
@@ -92,4 +96,19 @@ input {
 .input-wrapper .input-field:focus {
     border: none;
     box-shadow: none;
+}
+
+.home-container {
+    width: 100%;
+    display: flex;
+    gap: 2vw;
+    padding: 2vw;
+}
+
+.right-container {
+    width: 30%;
+}
+
+.left-container {
+    width: 70%;
 }
