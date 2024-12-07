@@ -20,6 +20,25 @@ class ProjectController extends Controller
         return view('create-project-page', compact('categories'));
     }
 
+    public function  my_projects_page()
+    {
+        $trending_categories = Category::withCount(['projects' => function ($query) {
+            $query->where('projects.created_at', '>=', now()->subMonth());
+        }])
+            ->orderBy('projects_count', 'desc')
+            ->take(10)
+            ->get();
+        $currentUserId = Auth::id();
+        $suggested_users = User::whereNotIn('id', function ($query) use ($currentUserId) {
+            $query->select('friend_id')
+                ->from('friends')
+                ->where('user_id', $currentUserId);
+        })
+            ->where('id', '!=', $currentUserId)
+            ->get();
+        $projects = Project::where('user_id', Auth::id())->paginate(3);
+        return view('my-projects-page', compact('projects', 'trending_categories', 'suggested_users'));
+    }
     public function get_project(int $project_id)
     {
         $project = Project::find($project_id);
@@ -50,6 +69,7 @@ class ProjectController extends Controller
 
     public function create_project(Request $request)
     {
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:2000',

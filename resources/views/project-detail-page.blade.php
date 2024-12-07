@@ -131,7 +131,7 @@
 
             @endif
             <div class="description-container">
-                <h4 class="project-title" style="margin-bottom: 1vh">Project Overview</h4>
+                <h4 class="project-title" style="margin-bottom:1vh">Project Overview</h4>
                 <p class="project-description">{{ $project->description }}</p>
             </div>
         </div>
@@ -172,7 +172,7 @@
                             </div>
 
                         @empty
-                            <p>No comments yet.</p>
+                            <p style="font-size: 15px !important">No comments yet.</p>
                         @endforelse
                     </div>
                 </div>

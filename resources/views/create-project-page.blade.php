@@ -26,7 +26,7 @@
         </div>
         <div class="form-container">
             <div class="form-header">Create Project</div>
-            <form class="form-section" action="/project/create" method="POST" enctype="multipart/form-data">
+            <form class="form-section" onsubmit="event.preventDefault(); sendApiRequest();" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
@@ -82,6 +82,16 @@
             </form>
         </div>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     {{-- <div>
         <form onsubmit="event.preventDefault(); sendApiRequest();" enctype="multipart/form-data">
             @csrf

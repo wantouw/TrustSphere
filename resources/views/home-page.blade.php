@@ -15,20 +15,24 @@
                 <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" class="search-pp" alt="">
             </div>
             <form class="form-inline" action="{{ route('search_project') }}" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                    name="search_query">
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-search icon"></i>
+                        <input class="input-field" type="text" id="search-query" name="search_query" placeholder="What awesome ideas do you have for your project?">
+                    </div>
                 {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
             </form>
-
+            <a class="btn btn-primary create-post-btn" href="">
+                Create Post
+            </a>
         </div>
 
         <div class="project-list-container">
-            @foreach ($projects as $project)
+            @forelse ($projects as $project)
                 @include('partials.project-card', ['project' => $project])
-            @endforeach
+            @empty
+                @include('partials.empty-message', ['message' => 'No projects yet'])
+            @endforelse
         </div>
     </div>
-    <div class="right-container">
-
-    </div>
+    
 @endsection

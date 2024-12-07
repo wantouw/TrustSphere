@@ -9,7 +9,7 @@
     <link rel="stylesheet" href={{asset('css/app.css')}}>
     <link rel="stylesheet" href={{asset('css/auth.css')}}>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/auth.css'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     <div class="main-layout">

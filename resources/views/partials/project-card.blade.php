@@ -26,11 +26,11 @@
             <div>
                 <div class="project-owner">
                     <img class="project-owner-picture"
-                    src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                    src="{{ asset('storage/' . $project->user->profile_picture) }}"
                     alt="Owner Project Picture">
                     <div class="owner-timestamp-wrapper">
                         <div class="owner-name-wrapper">
-                            <p class="project-owner-name">{{ Auth::user()->name }}</p>
+                            <p class="project-owner-name">{{ $project->user->name }}</p>
                             <span class="circle"></span>
 
                         </div>
