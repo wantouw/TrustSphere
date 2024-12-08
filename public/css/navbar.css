@@ -30,7 +30,7 @@ nav {
 .nav-list {
     width: 100%;
 }
-.nav-list a{
+.nav-list a, .friends-btn{
     display: flex;
     gap: 16px;
     font-weight: 500;

@@ -72,6 +72,40 @@
 
         </div>
     </div>
+    <div class="modal fade" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Friends</h5>
+              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                @forelse (Auth::user()->friends as $friend)
+                <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
+                    @csrf
+                    <input type="hidden" name="friend_id" value="{{$friend->id}}">
+                    <div class="left-suggested-user-container">
+                        <img src="{{ asset('storage/' . $friend->profile_picture) }}" alt="">
+                        <div class="trending-category-name-wrapper">
+                            <p class="trending-category-text">{{$friend->name}}</p>
+                            <p class="trending-category-post-text">{{$friend->projects->count()}} posts</p>
+                        </div>
+                    </div>
+                    <div class="right-suggested-user-container">
+                        <button type="submit" class="btn btn-primary remove-btn">Remove</button>
+                    </div>
+                </form>
+                @empty
+                    @include('partials.empty-message', ['message' => 'There is no friends yet!'])
+                @endforelse
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     {{-- @include('partials.footer') --}}
     @yield('scripts')
     <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>

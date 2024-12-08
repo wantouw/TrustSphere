@@ -124,7 +124,7 @@
     padding: 8px;
     border-radius: 50%;
     background-color: whitesmoke;
-    z-index: 10000;
+    z-index: 1;
     cursor: pointer;
 }
 
