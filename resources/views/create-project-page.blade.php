@@ -60,7 +60,7 @@
                     <div class="input-wrapper">
                         <i class="fa-solid fa-tags icon"></i> <!-- Icon for categories -->
                         <div id="selectedCategories" class="selected-categories mb-2">
-                            <!-- Selected categories will be dynamically added here -->
+
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,6 @@
                             placeholder="Search or type to create a new category">
                         <div class="dropdown-menu hide" id="categorySuggestions"
                             style="width: 100%; max-height: 200px; overflow-y: auto;">
-                            <!-- Dynamic category suggestions will be added here -->
                         </div>
                     </div>
                 </div>
@@ -183,7 +182,7 @@
 
             selectedCategoryIds.push(category.id);
             const categoryChip = document.createElement('div');
-            categoryChip.className = 'badge bg-primary me-2 mb-2 py-2 px-4';
+            categoryChip.className = 'badge category-badge me-2 mb-2 py-2 px-4';
             categoryChip.textContent = category.name;
             categoryChip.setAttribute('data-id', category.id);
 

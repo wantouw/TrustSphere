@@ -1,7 +1,7 @@
 @extends('layouts.main-layout')
 
 
-@section('title', 'Home')
+@section('title', 'Explore')
 
 @section('css-link')
     <link rel="stylesheet" href="css/project-card.css">
@@ -34,5 +34,9 @@
             @endforelse
         </div>
     </div>
+
+@endsection
+
+@section('side-content')
 
 @endsection
