@@ -20,6 +20,13 @@ class ProjectController extends Controller
         return view('create-project-page', compact('categories'));
     }
 
+    public function explore_project_page(Request $request)
+    {
+        $projects = Project::all();
+
+        return view('explore-project-page', compact('projects'));
+    }
+
     public function  my_projects_page()
     {
         $trending_categories = Category::withCount(['projects' => function ($query) {

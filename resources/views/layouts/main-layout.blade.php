@@ -23,7 +23,7 @@
             @section('side-content')
                 <div class="right-container">
                     <div class="right-side-wrapper">
-
+                        @if (isset($trending_categories))
                         <div class="right-bubble-container">
                             <h5>Trending Categories</h5>
                             <div class="right-bubble-content-wrapper">
@@ -42,7 +42,8 @@
                                 @endforeach
                             </div>
                         </div>
-                        @if (Auth::check())
+                        @endif
+                        @if (Auth::check() && isset($suggested_users))
                             <div class="right-bubble-container">
                                 <h5>Suggested Users</h5>
                                 <div class="right-bubble-content-wrapper">

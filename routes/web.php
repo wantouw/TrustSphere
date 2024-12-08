@@ -20,6 +20,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'home_page'])->name('home_page');
+    Route::get('/explore', [ProjectController::class, 'explore_project_page'])->name('explore_project_page');
     Route::get('/project/create', [ProjectController::class, 'create_project_page'])->name('create_project_page');
     Route::post('/like', [UserLikeController::class, 'like_project'])->name('like_project');
     Route::post('/category/create', [ProjectCategoryController::class, 'create_category'])->name('create_category');
