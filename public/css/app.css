@@ -12,7 +12,7 @@ body{
     background-color: var(--surface-color);
 }
 :root {
-    --accent-color: #FFAB73; /* Lighter orange, softer but vibrant */
+    --accent-color: #FFAB73;
     --secondary-color: #FFD3B6; /* Original pastel peach */
     --background-color: #FFFFFF; /* Pure white for a clean background */
     --surface-color: #F8F8F8; /* Neutral light surface color */
@@ -23,7 +23,7 @@ body{
     --warning-color: #F1C40F; /* Original yellow */
     --error-color: #E74C3C; /* Original red */
     --secondary-light: #e6e3e384; /* Light Gray*/
-    --secondary-text-color: #818181
+    --secondary-text-color: #818181;
 }
 
 input {
@@ -45,6 +45,7 @@ input {
     display: flex;
     gap: 2vw;
     padding: 2vw;
+    position: relative;
 }
 
 .form-header {

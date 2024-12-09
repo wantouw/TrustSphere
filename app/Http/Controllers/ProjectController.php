@@ -22,9 +22,35 @@ class ProjectController extends Controller
 
     public function explore_project_page(Request $request)
     {
-        $projects = Project::all();
+        $selectedCategories = $request->get('categories', []);
+        $searchQuery = $request->get('search', '');
+        $isSafe = $request->get('is_safe', null);
 
-        return view('explore-project-page', compact('projects'));
+        if (is_string($selectedCategories)) {
+            $selectedCategories = explode(',', $selectedCategories);
+        }
+
+        $projects = Project::when(!empty($selectedCategories), function ($query) use ($selectedCategories) {
+            $query->whereHas('categories', function ($q) use ($selectedCategories) {
+                $q->whereIn('categories.id', $selectedCategories);
+            });
+        })
+            ->when($searchQuery, function ($query) use ($searchQuery) {
+                $query->where('title', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('description', 'like', '%' . $searchQuery . '%');
+            })
+            ->get();
+
+        if ($isSafe !== null) {
+            $isSafeBool = $isSafe === 'true';
+            $projects = $projects->filter(function ($project) use ($isSafeBool) {
+                return $project->is_safe === $isSafeBool;
+            });
+        }
+
+        $categories = Category::all();
+
+        return view('explore-project-page', compact('projects', 'categories', 'selectedCategories', 'searchQuery'));
     }
     public function liked_projects_page()
     {
@@ -40,14 +66,14 @@ class ProjectController extends Controller
                 ->from('friends')
                 ->where('user_id', $currentUserId);
         })
-        ->whereNotIn('role_id', function ($query) {
-            $query->select('id')
-                ->from('roles')
-                ->where('name', '=', 'admin');
-        })
-        ->where('id', '!=', $currentUserId)
-        ->get();
-        $projects = Auth::user()->liked_projects;
+            ->whereNotIn('role_id', function ($query) {
+                $query->select('id')
+                    ->from('roles')
+                    ->where('name', '=', 'admin');
+            })
+            ->where('id', '!=', $currentUserId)
+            ->get();
+        $projects = Auth::user()->liked_projects->with('comments');
         return view('liked-projects-page', compact('projects', 'suggested_users', 'trending_categories'));
     }
     public function  my_projects_page()
@@ -64,14 +90,14 @@ class ProjectController extends Controller
                 ->from('friends')
                 ->where('user_id', $currentUserId);
         })
-        ->whereNotIn('role_id', function ($query) {
-            $query->select('id')
-                ->from('roles')
-                ->where('name', '=', 'admin');
-        })
-        ->where('id', '!=', $currentUserId)
-        ->get();
-        $projects = Project::where('user_id', Auth::id())->paginate(3);
+            ->whereNotIn('role_id', function ($query) {
+                $query->select('id')
+                    ->from('roles')
+                    ->where('name', '=', 'admin');
+            })
+            ->where('id', '!=', $currentUserId)
+            ->get();
+        $projects = Project::where('user_id', Auth::id())->with('comments')->paginate(3);
         return view('my-projects-page', compact('projects', 'trending_categories', 'suggested_users'));
     }
     public function get_project(int $project_id)
@@ -143,8 +169,7 @@ class ProjectController extends Controller
             'search_query' => 'required'
         ]);
         $search_query = $validated['search_query'];
-        $projects = Project::where('title', 'like', '%'. $search_query. '%')->get();
+        $projects = Project::where('title', 'like', '%' . $search_query . '%')->get();
         return view('search-page', compact('projects', 'search_query'));
-
     }
 }

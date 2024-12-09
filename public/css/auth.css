@@ -1,4 +1,19 @@
 
+:root {
+    --accent-color: #FFAB73;
+    --secondary-color: #FFD3B6; /* Original pastel peach */
+    --background-color: #FFFFFF; /* Pure white for a clean background */
+    --surface-color: #F8F8F8; /* Neutral light surface color */
+    --text-color: #333333; /* Dark gray for strong readability */
+    --muted-text-color: #777777; /* Softer muted gray */
+    --border-color: #E0E0E0; /* Neutral border color */
+    --success-color: #27AE60; /* Original green */
+    --warning-color: #F1C40F; /* Original yellow */
+    --error-color: #E74C3C; /* Original red */
+    --secondary-light: #e6e3e384; /* Light Gray*/
+    --secondary-text-color: #818181;
+}
+
 
 .content {
     display: flex;
@@ -7,6 +22,7 @@
     gap: 42px;
     box-sizing: border-box;
     height: 100vh;
+    background-color: var(--surface-color);
 }
 
 .form-container {
@@ -62,6 +78,8 @@
     color: var(--muted-text-color);
 }
 
+
+
 .input-wrapper .input-field {
     all: unset;
     outline: none;
@@ -100,6 +118,7 @@
     background-color: var(--accent-color);
     color: #fff;
     font-size: 1.1rem;
+    border-width: 0px;
     font-weight: 300;
     cursor: pointer;
 }

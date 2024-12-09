@@ -28,7 +28,7 @@
                             <h5>Trending Categories</h5>
                             <div class="right-bubble-content-wrapper">
                                 @foreach ($trending_categories as $category)
-                                    <a href="" class="trending-category-wrapper">
+                                    <a href={{ route('explore_project_page', ['categories' => $category->id]) }} class="trending-category-wrapper">
                                         <div class="trending-category-name-wrapper">
                                             <p class="trending-category-text">{{$category->name}}</p>
                                             <p class="trending-category-post-text">{{$category->projects->count()}} posts</p>

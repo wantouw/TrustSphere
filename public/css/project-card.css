@@ -137,3 +137,24 @@
     filter: none;
 }
 
+.negative-project-confirmation-container {
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.negative-project-confirmation-container p, .warning-icon {
+    color: var(--error-color) !important;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.esclamation-text-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--error-color);
+}
+

@@ -89,6 +89,11 @@
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                <button type="button" class="friends-btn" data-bs-toggle="modal" data-bs-target="#friendsModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
                     </svg>
                     <p>Friends</p>
                 </button>
@@ -97,6 +102,22 @@
         </ul>
         <div class="dropup btn-group w-100">
             @if (Auth::check())
+                <button class="profile-menu" type="button" class="dropdown-toggle w-100" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img class="profile-picture" src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
+                        alt="Profile Picture">
+                    <div class="username-wrapper">
+                        <p class="profile-name">{{ Auth::user()->name }}</p>
+                        <p class="profile-email">{{ Auth::user()->email }}</p>
+                    </div>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item" style="border-bottom: 0.5px solid rgba(216, 216, 216, 0.837)">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
                 <button class="profile-menu" type="button" class="dropdown-toggle w-100" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <img class="profile-picture" src="{{ asset('storage/' . Auth::user()->profile_picture) }}"
@@ -123,7 +144,17 @@
                         </form>
                     </li>
                 </ul>
+                        <a href="">Profile</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="w-100" style="text-align: left">Log Out</button>
+                        </form>
+                    </li>
+                </ul>
             @else
+                <a href="{{ route('login_page') }}">Login Here</a>
                 <a href="{{ route('login_page') }}">Login Here</a>
             @endif
         </div>
