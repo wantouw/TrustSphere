@@ -4,8 +4,8 @@
 @section('title', 'Search')
 
 @section('css-link')
-    <link rel="stylesheet" href="css/my-projects.css">
-    <link rel="stylesheet" href="css/project-card.css">
+    <link rel="stylesheet" href="{{asset("css/my-projects.css")}}">
+    <link rel="stylesheet" href="{{asset("css/project-card.css")}}">
 @endsection
 
 @section('content')

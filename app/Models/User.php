@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -48,13 +49,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function projects() : HasMany {
+    public function projects(): HasMany
+    {
         return $this->hasMany(Project::class, 'user_id', 'id');
     }
-    public function project_votes() : BelongsToMany {
+    public function project_votes(): BelongsToMany
+    {
         return $this->belongsToMany(Project::class, 'project_votes', 'user_id', 'project_id')->withPivot('type');
     }
-    public function project_views() : BelongsToMany {
+    public function project_views(): BelongsToMany
+    {
         return $this->belongsToMany(
             Project::class,
             'project_views',
@@ -62,7 +66,8 @@ class User extends Authenticatable
             'project_id',
         );
     }
-    public function liked_projects() : BelongsToMany {
+    public function liked_projects(): BelongsToMany
+    {
         return $this->belongsToMany(
             Project::class,
             'user_likes',
@@ -71,11 +76,12 @@ class User extends Authenticatable
         );
     }
 
-    public function comment() : HasOne {
+    public function comment(): HasOne
+    {
         return $this->hasOne(Comment::class, 'sender_id', 'id');
     }
 
-    public function friends() : BelongsToMany
+    public function friends(): BelongsToMany
     {
         return $this->belongsToMany(
             User::class,
@@ -85,7 +91,16 @@ class User extends Authenticatable
         );
     }
     public function friendOf()
+    {
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
+    }
+
+    public function role() : BelongsTo
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+    public function hasRole($roleName)
 {
-    return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
+    return $this->role && $this->role->name === $roleName;
 }
 }

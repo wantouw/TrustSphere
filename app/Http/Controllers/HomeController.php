@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,13 @@ class HomeController extends Controller
                 ->from('friends')
                 ->where('user_id', $currentUserId);
         })
-            ->where('id', '!=', $currentUserId)
-            ->get();
-        return view('home-page', compact('projects', 'trending_categories','suggested_users'));
+        ->whereNotIn('role_id', function ($query) {
+            $query->select('id')
+                ->from('roles')
+                ->where('name', '=', 'admin');
+        })
+        ->where('id', '!=', $currentUserId)
+        ->get();
+        return view('home-page', compact('projects', 'trending_categories', 'suggested_users'));
     }
 }

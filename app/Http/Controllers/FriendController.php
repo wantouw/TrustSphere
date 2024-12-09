@@ -46,8 +46,13 @@ class FriendController extends Controller
                 ->from('friends')
                 ->where('user_id', $currentUserId);
         })
-            ->where('id', '!=', $currentUserId)
-            ->get();
+        ->whereNotIn('role_id', function ($query) {
+            $query->select('id')
+                ->from('roles')
+                ->where('name', '=', 'admin');
+        })
+        ->where('id', '!=', $currentUserId)
+        ->get();
         return view('friends-page', compact('suggested_users', 'trending_categories'));
     }
 }

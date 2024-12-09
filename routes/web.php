@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
@@ -16,9 +17,9 @@ Route::get('/login', [AuthController::class, 'login_page'])->name('login_page');
 Route::get('/register', [AuthController::class, 'register_page']);
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'home_page'])->name('home_page');
     Route::get('/explore', [ProjectController::class, 'explore_project_page'])->name('explore_project_page');
     Route::get('/project/create', [ProjectController::class, 'create_project_page'])->name('create_project_page');
@@ -30,7 +31,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/vote', [ProjectVoteController::class, 'vote'])->name('vote');
     Route::get('/friends', [FriendController::class, 'friends_page'])->name('friends_page');
     Route::post('/friend/follow', [FriendController::class, 'follow_friends'])->name('follow_friend');
+    Route::get('/project/liked', [ProjectController::class, 'liked_projects_page'])->name('liked_projects_page');
+    Route::get('/project/{project_id}', [ProjectController::class, 'project_detail_page'])->name(name: 'project_detail_page');
+    Route::get('/search', [ProjectController::class, 'search_project_page'])->name('search_project');
+    Route::get('my-projects', [ProjectController::class, 'my_projects_page'])->name('my_projects_page');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard_page'])->name('admin_dashboard')->middleware('admin');
+
 });
-Route::get('/project/{project_id}', [ProjectController::class, 'project_detail_page'])->name(name: 'project_detail_page');
-Route::get('/search', [ProjectController::class, 'search_project_page'])->name('search_project');
-Route::get('my-projects', [ProjectController::class, 'my_projects_page'])->name('my_projects_page');
