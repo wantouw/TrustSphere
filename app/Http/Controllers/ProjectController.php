@@ -73,7 +73,7 @@ class ProjectController extends Controller
             })
             ->where('id', '!=', $currentUserId)
             ->get();
-        $projects = Auth::user()->liked_projects->with('comments');
+        $projects = Auth::user()->liked_projects;
         return view('liked-projects-page', compact('projects', 'suggested_users', 'trending_categories'));
     }
     public function  my_projects_page()

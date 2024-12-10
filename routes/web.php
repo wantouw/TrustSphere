@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectVoteController;
@@ -36,5 +37,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search', [ProjectController::class, 'search_project_page'])->name('search_project');
     Route::get('my-projects', [ProjectController::class, 'my_projects_page'])->name('my_projects_page');
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard_page'])->name('admin_dashboard')->middleware('admin');
+    Route::get('/my-profile', [ProfileController::class, 'my_profile_page'])->name('my_profile_page');
 
 });
