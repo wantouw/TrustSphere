@@ -6,7 +6,7 @@
     <link rel="stylesheet" href={{ asset('css/project-detail.css') }}>
 @endsection
 @section('content')
-    <div class="project-detail-wrapper">
+    <div class="project-detail-wrapper left-container">
         <div class="detail-container">
             <div class="owner-container">
                 <img class="owner-picture"
@@ -135,74 +135,76 @@
                 <p class="project-description">{{ $project->description }}</p>
             </div>
         </div>
+    </div>
+@endsection
 
-        <div class="right-container">
-            <div class="comment-container">
-                <div>
-                    <h5>Comments</h5>
-                    <div class="comment-list-wrapper">
-                        @forelse ($project->comments as $comment)
-                            <div class="comment-wrapper">
-                                <div class="sender-container">
-                                    <div class="sender-wrapper">
-                                        <img class="sender-picture"
-                                            src="{{ asset('storage/' . $project->user->profile_picture) }}"
-                                            alt="Profile Picture">
-                                        <p class="sender-name">{{ $comment->sender->name }}</p>
-                                    </div>
-                                    @if ($comment->sender_id == auth()->id())
-                                        <form action="{{ route('delete_comment', ['project_id' => $project->id]) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">
-                                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    fill="none" viewBox="0 0 24 24" style="color: gray !important">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                                                </svg>
-
-                                            </button>
-                                        </form>
-                                    @endif
-                                </div>
-                                <p class="comment-description">{{ $comment->comment }}</p>
+@section('side-content')
+<div class="right-container">
+    <div class="comment-container">
+        <div>
+            <h5>Comments</h5>
+            <div class="comment-list-wrapper">
+                @forelse ($project->comments as $comment)
+                    <div class="comment-wrapper">
+                        <div class="sender-container">
+                            <div class="sender-wrapper">
+                                <img class="sender-picture"
+                                    src="{{ asset('storage/' . $project->user->profile_picture) }}"
+                                    alt="Profile Picture">
+                                <p class="sender-name">{{ $comment->sender->name }}</p>
                             </div>
+                            @if ($comment->sender_id == auth()->id())
+                                <form action="{{ route('delete_comment', ['project_id' => $project->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">
+                                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="none" viewBox="0 0 24 24" style="color: gray !important">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                        </svg>
 
-                        @empty
-                            <p style="font-size: 15px !important">No comments yet.</p>
-                        @endforelse
-                    </div>
-                </div>
-
-
-                @if (auth()->check())
-                    <form action="{{ route('create_comment') }}" method="POST" class="add-comment-container">
-                        @csrf
-                        <div class="comment-input-container">
-                            <div class="form-group">
-                                <div class="input-wrapper">
-
-                                    <input class="input-field" type="text" id="text" name="comment"
-                                        placeholder="Enter comment" value="{{ old('comment') }}">
-                                </div>
-                            </div>
-                            <button type="submit" class="btn-primary add-comment-btn">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                    viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                                </svg>
-
-                            </button>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
-                        <input type="hidden" name="project_id" value="{{ $project->id }}">
-                    </form>
-                @endif
+                        <p class="comment-description">{{ $comment->comment }}</p>
+                    </div>
+
+                @empty
+                    <p style="font-size: 15px !important">No comments yet.</p>
+                @endforelse
             </div>
         </div>
+
+
+        @if (auth()->check())
+            <form action="{{ route('create_comment') }}" method="POST" class="add-comment-container">
+                @csrf
+                <div class="comment-input-container">
+                    <div class="form-group">
+                        <div class="input-wrapper">
+
+                            <input class="input-field" type="text" id="text" name="comment"
+                                placeholder="Enter comment" value="{{ old('comment') }}">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary add-comment-btn">
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                        </svg>
+
+                    </button>
+                </div>
+                <input type="hidden" name="project_id" value="{{ $project->id }}">
+            </form>
+        @endif
     </div>
+</div>
 @endsection

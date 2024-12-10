@@ -118,7 +118,7 @@ input {
 .right-bubble-container {
     background-color: white !important;
     border-radius: 1.5rem;
-    padding: 2vw;
+    padding: 1.5rem;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1),
     0 4px 6px rgba(0, 0, 0, 0.05);
 }
