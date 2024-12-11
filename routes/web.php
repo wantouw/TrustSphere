@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/project/create', [ProjectController::class, 'create_project_page'])->name('create_project_page');
     Route::post('/like', [UserLikeController::class, 'like_project'])->name('like_project');
     Route::post('/category/create', [ProjectCategoryController::class, 'create_category'])->name('create_category');
+    Route::delete('/project/delete/{project_id}', [ProjectController::class, 'delete_project'])->name('delete_project')->middleware('admin');
     Route::post('/project/create', [ProjectController::class, 'create_project'])->name('create_project');
     Route::post('/comment/create', [CommentController::class, 'create_comment'])->name('create_comment');
     Route::delete('/comment/delete/{project_id}', [CommentController::class,'delete_comment'])->name('delete_comment');
@@ -36,7 +37,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/project/{project_id}', [ProjectController::class, 'project_detail_page'])->name(name: 'project_detail_page');
     Route::get('/search', [ProjectController::class, 'search_project_page'])->name('search_project');
     Route::get('my-projects', [ProjectController::class, 'my_projects_page'])->name('my_projects_page');
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard_page'])->name('admin_dashboard')->middleware('admin');
     Route::get('/my-profile', [ProfileController::class, 'my_profile_page'])->name('my_profile_page');
-
 });

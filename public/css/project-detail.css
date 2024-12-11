@@ -12,7 +12,11 @@
     0 4px 6px rgba(0, 0, 0, 0.05);
     width: 100%;
 }
-
+.owner-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .owner-container{
     display: flex;
     flex-direction: row;
@@ -269,3 +273,56 @@ svg{
     align-items: center;
 
 }
+
+.whatsapp-btn {
+    width: 150px;
+    font-size: 15px;
+    height: 40px;
+    display: flex;
+    border-radius: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: 600;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+  }
+
+  .svgIcon {
+    width: 17px;
+    height: 17px;
+  }
+
+  .svgIcon path {
+    fill: white;
+  }
+
+  .whatsapp-btn::before {
+    width: 150px;
+    height: 130px;
+    position: absolute;
+    content: "";
+    background-color: rgb(36, 36, 36);
+    border-radius: 50%;
+    left: -100%;
+    top: 0;
+    transition-duration: .3s;
+    mix-blend-mode: saturation;
+  }
+
+  .whatsapp-btn:hover::before {
+    transition-duration: .3s;
+    transform: translate(100%,-50%);
+    border-radius: 0;
+  }
+
+  .whatsapp-btn:active {
+    transform: translate(5px,5px);
+    transition-duration: .3s;
+  }
