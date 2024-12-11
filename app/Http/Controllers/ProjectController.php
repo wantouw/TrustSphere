@@ -172,4 +172,10 @@ class ProjectController extends Controller
         $projects = Project::where('title', 'like', '%' . $search_query . '%')->get();
         return view('search-page', compact('projects', 'search_query'));
     }
+
+    public function delete_project(int $project_id)
+    {
+        Project::where('id', $project_id)->delete();
+        return redirect()->route('home_page');
+    }
 }
