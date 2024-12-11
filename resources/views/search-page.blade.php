@@ -5,12 +5,12 @@
 
 @section('content')
     <div>
-        <p>Showing results for {{$search_query}}</p>
+        <p>{{__('search.title')}} {{$search_query}}</p>
         <div>
             @forelse ($projects as $project)
                 <p>{{$project->title}}</p>
             @empty
-                <p>No project matched</p>
+                <p>{{__('search.no_result')}}</p>
             @endforelse
         </div>
     </div>

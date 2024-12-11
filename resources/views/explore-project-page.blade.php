@@ -24,11 +24,11 @@
     <div class="filter-container">
         <div class="filter-section">
             <div class="filter-header-section">
-                <h1 class="filter-header">Search Filters</h1>
+                <h1 class="filter-header">{{ __('search.filter_title') }}</h1>
                 <i class="fa-solid fa-arrow-right"></i>
             </div>
             <div class="filter-wrapper">
-                <h3 class="filter-title">Project Categories</h3>
+                <h3 class="filter-title">{{ __('search.category_title') }}</h3>
                 <div class="categories-container">
                     @foreach ($categories as $category)
                         <div class="filter {{ in_array($category->id, $selectedCategories ?? []) ? 'selected' : '' }}"
@@ -39,36 +39,36 @@
                 </div>
             </div>
             <div class="filter-wrapper">
-                <h3 class="filter-title">Project Status</h3>
+                <h3 class="filter-title">{{ __('search.status_title') }}</h3>
                 <div class="categories-container">
                     <div class="filter status-filter {{ request()->get('is_safe') === 'true' ? 'selected' : '' }}"
                         data-status="true">
-                        Safe
+                        {{ __('search.status.safe') }}
                     </div>
                     <div class="filter status-filter {{ request()->get('is_safe') === 'false' ? 'selected' : '' }}"
                         data-status="false">
-                        Under Review
+                        {{ __('search.status.under_review') }}
                     </div>
                 </div>
             </div>
         </div>
         <div class="filter-section">
             <div class="filter-header-section">
-                <h1 class="filter-header">Sorted By</h1>
+                <h1 class="filter-header">{{ __('search.sort_title') }}</h1>
                 <i class="fa-solid fa-sort"></i>
             </div>
             <div class="sort-wrapper">
                 <div class="sort-options">
                     <label class="sort-option">
-                        Relevance
+                        {{ __('search.sort.relevance') }}
                         <input type="radio" name="sort" value="relevance" checked>
                     </label>
                     <label class="sort-option">
-                        Popularity
+                        {{ __('search.sort.popularity') }}
                         <input type="radio" name="sort" value="popularity">
                     </label>
                     <label class="sort-option">
-                        Most Liked
+                        {{ __('search.sort.most_liked') }}
                         <input type="radio" name="sort" value="most-liked">
                     </label>
                 </div>
