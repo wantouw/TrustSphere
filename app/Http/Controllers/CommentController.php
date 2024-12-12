@@ -53,7 +53,7 @@ class CommentController extends Controller
         Comment::where('project_id', $project_id)
                 ->where('sender_id', Auth::id())
                 ->delete();
-                
+
         return redirect()->back()->with('success', 'Comment deleted successfully!');
     }
 }
