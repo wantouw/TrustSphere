@@ -121,16 +121,6 @@
                     </div>
                 </div>
 
-                @if ($errors->any())
-                    <div class="error-message">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <button class="submit-button" type="submit">{{ __('register.submit_button') }}</button>
 
                 <div class="divider">
