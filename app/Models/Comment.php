@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
+    protected $primaryKey = ['project_id', 'sender_id'];
+    public $incrementing = false;
+    protected $keyType = 'string';
     use HasFactory;
     protected $fillable = [
         'project_id',

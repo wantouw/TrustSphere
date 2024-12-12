@@ -52,7 +52,7 @@
                                         @csrf
                                         <input type="hidden" name="friend_id" value="{{$suggested_user->id}}">
                                         <div class="left-suggested-user-container">
-                                            <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="">
+                                            <img src="{{ asset('storage/' . $suggested_user->profile_picture) }}" alt="">
                                             <div class="trending-category-name-wrapper">
                                                 <p class="trending-category-text">{{$suggested_user->name}}</p>
                                                 <p class="trending-category-post-text">{{$suggested_user->projects->count()}} posts</p>
