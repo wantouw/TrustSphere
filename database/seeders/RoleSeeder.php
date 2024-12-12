@@ -16,8 +16,10 @@ class RoleSeeder extends Seeder
         //
 
         Role::insert([
-            ['name' => 'user'],
-            ['name' => 'admin']
+            ['name' => 'software engineer'],
+            ['name' => 'admin'],
+            ['name' => 'entrepreneur'],
+            ['name' => 'investor'],
         ]);
 
     }

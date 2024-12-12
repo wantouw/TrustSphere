@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class AuthController extends Controller
     }
     public function register_page()
     {
-        return view('register-page');
+        $roles = Role::where('name', '!=', 'admin')->get();
+        return view('register-page', compact('roles'));
     }
 
     public function register(Request $request)
@@ -30,11 +32,14 @@ class AuthController extends Controller
                 'date',
                 'before_or_equal:' . now()->subYears(18)->toDateString(),
             ],
+            'role_id' => 'required|exists:roles,id',
+            'phone_number' => ['required', 'regex:/^628[0-9]+$/'],
             'profile_picture' => 'nullable|mimes:jpeg,png,jpg,gif,svg',
             'password' => 'required|string|min:8|confirmed',
             'password_confirmation' => 'required|string|min:8',
         ], [
             'dob.before_or_equal' => 'You must be at least 18 years old.',
+            'phone_number.regex' => 'The phone number must start with 628 and contain only digits.',
         ]);
 
         $user = new User();
@@ -42,7 +47,8 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->dob = $request->dob;
         $user->password = bcrypt($request->password);
-
+        $user->role_id = $request->role_id;
+        $user->phone_number = $request->phone_number;
         if ($request->has('bio')) {
             $user->bio = $request->bio;
         }
@@ -69,7 +75,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('login');
+            return redirect()->route('home_page');
         }
 
         return back()->withErrors([

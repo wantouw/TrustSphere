@@ -31,7 +31,7 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
-            <p>This project has low reliability</p>
+            <p>{{ __('project-card.low-reliability') }}</p>
         </div>
         @endif
         <div class="bottom-information-container">
@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="project-stats-information-container">
-                <span>{{ $project->project_views->count() }} views</span>
-                <span>{{ $project->user_likes->count() }} likes</span>
-                <span>{{ $project->comments->count() }} comments</span>
+                <span>{{ $project->project_views->count() }} {{ __('project-card.views') }}</span>
+                <span>{{ $project->user_likes->count() }} {{ __('project-card.likes') }}</span>
+                <span>{{ $project->comments->count() }} {{ __('project-card.comments') }}</span>
             </div>
 
         </div>
