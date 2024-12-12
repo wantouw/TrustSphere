@@ -8,47 +8,46 @@
         <div class="promo-create-container">
             <h1 class="promo-create-logo">TrustSphere.</h1>
             <div class="promo-create-middle">
-                <h1 class="promo-create-header">Bring your ideas <br> to light.</h1>
-                <p class="promo-message">Create your project, share your vision, and turn your greatest ideas into reality
-                    with the support you deserve.</p>
+                <h1 class="promo-create-header">{{ __('create-project.promo-header.first') }}<br> {{ __('create-project.promo-header.second') }}</h1>
+                <p class="promo-message">{{ __('create-project.promo-message') }}</p>
             </div>
             <div class="promo-achievements">
                 <div class="achievement">
                     <h3 class="achievement-value">100+</h3>
-                    <p class="achievement-label">Projects Funded</p>
+                    <p class="achievement-label">{{ __('create-project.total-projects-label') }}</p>
                 </div>
                 <div class="separator">|</div>
                 <div class="achievement">
                     <h3 class="achievement-value">$50,000+</h3>
-                    <p class="achievement-label">Funded to Projects</p>
+                    <p class="achievement-label">{{ __('create-project.projects-label-money') }}</p>
                 </div>
             </div>
         </div>
         <div class="form-container">
-            <div class="form-header">Create Project</div>
+            <div class="form-header">{{ __('create-project.form-header') }}</div>
             <form class="form-section" onsubmit="event.preventDefault(); sendApiRequest();" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
-                    <label class="input-label" for="title">Project Title</label>
+                    <label class="input-label" for="title">{{ __('create-project.title-label') }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-lightbulb icon"></i> <!-- Icon for title -->
                         <input type="text" class="form-control input-field" id="title" name="title"
-                            placeholder="Title" value="{{ old('title') }}" required>
+                            placeholder="{{ __('create-project.title-label') }}" value="{{ old('title') }}" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="input-label" for="description">Project Description</label>
+                    <label class="input-label" for="description">{{ __('create-project.description-label') }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-pen icon"></i> <!-- Icon for description -->
-                        <textarea class="form-control input-field" id="description" name="description" placeholder="Project Description"
+                        <textarea class="form-control input-field" id="description" name="description" placeholder="{{ __('create-project.description-label') }}"
                             rows="3" required>{{ old('description') }}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="input-label" for="projectImages">Project Images</label>
+                    <label class="input-label" for="projectImages">{{ __('create-project.image-label') }}</label>
                     <div class="input-wrapper promo-create-wrapper">
                         <i class="fa-solid fa-image icon"></i> <!-- Icon for images -->
                         <input type="file" class="form-control input-field" id="projectImages" name="images[]" multiple>
@@ -56,28 +55,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="input-label">Selected Categories</label>
-                    <div class="input-wrapper">
+                    <label class="input-label">{{ __('create-project.selected-category-label') }}</label>
+                    <div class="input-wrapper" style="">
                         <i class="fa-solid fa-tags icon"></i> <!-- Icon for categories -->
-                        <div id="selectedCategories" class="selected-categories mb-2">
-
+                        <div id="selectedCategories" class="selected-categories" style="min-height: 20px">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="input-label" for="categorySearch">Project Category</label>
+                    <label class="input-label" for="categorySearch">{{ __('create-project.category-label') }}</label>
                     <div class="input-wrapper">
                         <i class="fa-solid fa-search icon"></i> <!-- Icon for search -->
                         <input type="text" class="form-control input-field" id="categorySearch"
-                            placeholder="Search or type to create a new category">
+                            placeholder="{{ __('create-project.category-placeholder') }}">
                         <div class="dropdown-menu hide" id="categorySuggestions"
-                            style="width: 100%; max-height: 200px; overflow-y: auto;">
+                            style="width: 100%; max-height: 200px; overflow-y: auto;position: absolute;top:3rem;left:0">
                         </div>
                     </div>
                 </div>
 
-                <button type="submit" class="submit-button">Create Project</button>
+                <button type="submit" class="submit-button">{{ __('create-project.button-label') }}</button>
             </form>
         </div>
     </div>
@@ -182,13 +180,14 @@
 
             selectedCategoryIds.push(category.id);
             const categoryChip = document.createElement('div');
-            categoryChip.className = 'badge category-badge me-2 mb-2 py-2 px-4';
+            categoryChip.className = 'badge category-badge py-2 px-4 h-100';
             categoryChip.textContent = category.name;
             categoryChip.setAttribute('data-id', category.id);
 
             const removeBtn = document.createElement('span');
             removeBtn.textContent = ' ×';
             removeBtn.className = 'ms-1 text-danger';
+            removeBtn.style.fontSize = '18px';
             removeBtn.style.cursor = 'pointer';
             removeBtn.onclick = () => {
                 selectedCategoryIds.splice(selectedCategoryIds.indexOf(category.id), 1);

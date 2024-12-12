@@ -11,6 +11,7 @@
     justify-content: space-between;
     cursor: pointer;
     transition: all 0.3s;
+    z-index: 1;
 }
 .project-card:hover {
     opacity: 0.8;

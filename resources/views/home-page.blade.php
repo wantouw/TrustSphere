@@ -11,7 +11,6 @@
 @section('content')
     <div class="left-container">
         @include('partials.search-bar')
-
         <div class="project-list-container">
             @forelse ($projects as $project)
                 @include('partials.project-card', ['project' => $project])

@@ -100,7 +100,11 @@ nav {
     font-size: 14px;
     text-align: left;
 }
-.dropdown-menu {
+
+.dropdown-toggle::after {
+    display: none;
+}
+.profile-dropdown .dropdown-menu {
     width: 300px;
     border: none;
     gap: 10px;
@@ -110,7 +114,8 @@ nav {
     transition: all 0.3s;
 }
 
-.dropdown-item {
+
+.profile-dropdown .dropdown-item {
     padding-inline:p14px;
     padding-block: 12px;
     display: flex;
@@ -178,3 +183,5 @@ nav {
     transition: transform 0.3s ease-in-out 0.1s;
     transform: translate(0);
   }
+
+

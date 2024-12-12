@@ -28,7 +28,7 @@
                             <h5>Trending Categories</h5>
                             <div class="right-bubble-content-wrapper">
                                 @foreach ($trending_categories as $category)
-                                    <a href={{ route('explore_project_page', ['categories' => $category->id]) }} class="trending-category-wrapper">
+                                    <a href={{ route('explore_project_page', ['categories' => $category->id, 'locale' => App::getLocale()]) }} class="trending-category-wrapper">
                                         <div class="trending-category-name-wrapper">
                                             <p class="trending-category-text">{{$category->name}}</p>
                                             <p class="trending-category-post-text">{{$category->projects->count()}} posts</p>
@@ -47,7 +47,7 @@
                             <div class="right-bubble-container">
                                 <h5>Suggested Users</h5>
                                 <div class="right-bubble-content-wrapper">
-                                    @foreach ($suggested_users as $suggested_user)
+                                    @forelse ($suggested_users as $suggested_user)
                                     <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
                                         @csrf
                                         <input type="hidden" name="friend_id" value="{{$suggested_user->id}}">
@@ -62,7 +62,9 @@
                                             <button type="submit" class="btn btn-primary follow-btn">Follow</button>
                                         </div>
                                     </form>
-                                    @endforeach
+                                    @empty
+                                        <p style="text-align: center;font-size:15px">No Suggested User Yet</p>
+                                    @endforelse
                                 </div>
                             </div>
                         @endif
@@ -82,7 +84,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <div>
+              <div class="my-friend-wrapper">
                 @forelse (Auth::user()->friends as $friend)
                 <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
                     @csrf

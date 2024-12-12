@@ -7,13 +7,11 @@
     <meta name="csrf-token" content="{{{ csrf_token() }}}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href={{asset('css/auth.css')}}>
-    <link rel="stylesheets" href={{asset('css/app.css')}}>
+    <link rel="stylesheet" href={{asset('css/app.css')}}>
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
 </head>
 <body>
-    <div class="main-layout">
-        @yield('content')
-    </div>
+    @yield('content')
     @yield('scripts')
 </body>
 <script src="{{ asset('bootstrap-5.3.3-dist/js/bootstrap.bundle.js') }}"></script>

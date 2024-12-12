@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectCategoryController;
 use App\Http\Controllers\ProjectController;
@@ -19,7 +20,8 @@ Route::get('/register', [AuthController::class, 'register_page']);
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'locale'])->group(function () {
+    Route::get('/lang', [LanguageController::class, 'change_language'])->name('change_language');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('/', [HomeController::class, 'home_page'])->name('home_page');
     Route::get('/explore', [ProjectController::class, 'explore_project_page'])->name('explore_project_page');
