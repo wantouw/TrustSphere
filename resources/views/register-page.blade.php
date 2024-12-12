@@ -16,6 +16,9 @@
                         <input class="input-field" type="text" id="fullName" name="name"
                             placeholder="{{ __('register.full_name') }}" value="{{ old('name') }}">
                     </div>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="input-label" for="email">{{ __('register.email') }}</label>
@@ -24,6 +27,9 @@
                         <input class="input-field" type="email" id="email" name="email" placeholder="{{ __('register.email') }}"
                             value="{{ old('email') }}">
                     </div>
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -33,6 +39,9 @@
                             <input class="input-field" type="password" id="password" name="password"
                                 placeholder="{{ __('register.password') }}">
                         </div>
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="password_confirmation">{{ __('register.confirm_password') }}</label>
@@ -41,6 +50,9 @@
                             <input class="input-field" type="password" id="password_confirmation"
                                 name="password_confirmation" placeholder="{{ __('register.confirm_password') }}">
                         </div>
+                        @error('password_confirmation')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -52,12 +64,18 @@
                             <input class="input-field" type="date" id="dob" name="dob"
                                 value="{{ old('dob') }}">
                         </div>
+                        @error('dob')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="profile_picture">{{ __('register.profile_picture') }}</label>
                         <div class="input-wrapper">
                             <input class="input-field" type="file" id="profile_picture" name="profile_picture">
                         </div>
+                        @error('profile_picture')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
@@ -72,6 +90,9 @@
                             <input class="input-field" type="text" id="phone_number" name="phone_number" placeholder="{{ __('register.phone_number') }}"
                                 value="{{ old('phone_number') }}">
                         </div>
+                        @error('phone_number')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="role">{{ __('register.role') }}</label>
@@ -94,6 +115,9 @@
                             </div>
                             <input type="hidden" name="role_id" id="selectedRole" value="">
                         </div>
+                        @error('role_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

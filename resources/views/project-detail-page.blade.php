@@ -32,7 +32,7 @@
                             </svg>
                         </button>
                     </form>
-                @elseif (Auth::user()->hasRole('user'))
+                @else
                     @if ($is_liked)
                     <a href="https://api.whatsapp.com/send?phone={{$project->user->phone_number}}" class="whatsapp-btn">
                         Contact
@@ -193,7 +193,7 @@
                         <div class="sender-container">
                             <div class="sender-wrapper">
                                 <img class="sender-picture"
-                                    src="{{ asset('storage/' . $project->user->profile_picture) }}"
+                                    src="{{ asset('storage/' . $comment->sender->profile_picture) }}"
                                     alt="Profile Picture">
                                 <p class="sender-name">{{ $comment->sender->name }}</p>
                             </div>
