@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="left-container">
-        <h1 class="page-title">My Projects</h1>
+        <h1 class="page-title">{{__('liked-projects.header')}}</h1>
         <div class="project-list">
             @forelse ($projects as $project)
                 @include('partials.project-card', ['project' => $project])

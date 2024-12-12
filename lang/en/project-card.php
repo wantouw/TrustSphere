@@ -4,5 +4,6 @@ return [
     'views' => 'views',
     'likes' => 'likes',
     'comments' => 'comments',
-    
+    'empty-message' =>'No projects yet'
+
 ];

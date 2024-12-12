@@ -15,7 +15,7 @@
                         alt="Profile Picture">
                     <div>
                         <p class="owner-name">{{ $project->user->name }}</p>
-                        <p class="owner-role">Software Engineer</p>
+                        <p class="owner-role">{{Str::ucfirst($project->user->role->name)}}</p>
                     </div>
                 </div>
                 @if (Auth::user()->hasRole('admin'))
@@ -108,8 +108,8 @@
                     @endforeach
                 </div>
                 <div action="{{ route('vote') }}" method="POST" class="project-stats-container">
-                    <p>{{ $project->project_views->count() }} views</p>
-                    <p>{{ $project->user_likes->count() }} likes</p>
+                    <p>{{ $project->project_views->count() }} {{__('project-detail.views')}}</p>
+                    <p>{{ $project->user_likes->count() }} {{__('project-detail.likes')}}</p>
                 </div>
             </div>
             @if (!$reliable)
@@ -121,12 +121,12 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
-                        <p>This project has low reliability</p>
+                        <p>{{__('project-detail.low-reliability')}}</p>
 
                     </div>
                     <form action="{{ route('vote') }}" method="POST" class="vote-container">
                         @csrf
-                        <span class="pr-3">Do you agree ?</span>
+                        <span class="pr-3">{{__('project-detail.agree-text')}}</span>
                         <input type="hidden" name="project_id" value="{{ $project->id }}">
                         <button type="submit" name="vote" value="positive"
                             class="vote-type-container positive-container">
@@ -175,7 +175,7 @@
 
             @endif
             <div class="description-container">
-                <h4 class="project-title" style="margin-bottom:1vh">Project Overview</h4>
+                <h4 class="project-title" style="margin-bottom:1vh">{{__('project-detail.overview-header')}}</h4>
                 <p class="project-description">{{ $project->description }}</p>
             </div>
         </div>
@@ -186,7 +186,7 @@
 <div class="right-container">
     <div class="comment-container">
         <div>
-            <h5>Comments</h5>
+            <h5>{{__('project-detail.comments')}}</h5>
             <div class="comment-list-wrapper">
                 @forelse ($project->comments as $comment)
                     <div class="comment-wrapper">
@@ -219,7 +219,7 @@
                     </div>
 
                 @empty
-                    <p style="font-size: 15px !important">No comments yet.</p>
+                    <p style="font-size: 15px !important">{{__('project-detail.empty-comment')}}.</p>
                 @endforelse
             </div>
         </div>
@@ -233,7 +233,7 @@
                         <div class="input-wrapper">
 
                             <input class="input-field" type="text" id="text" name="comment"
-                                placeholder="Enter comment" value="{{ old('comment') }}">
+                                placeholder="{{__('project-detail.comment-placeholder')}}" value="{{ old('comment') }}">
                         </div>
                     </div>
                     <button type="submit" class="btn-primary add-comment-btn">

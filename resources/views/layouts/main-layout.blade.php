@@ -25,13 +25,13 @@
                     <div class="right-side-wrapper">
                         @if (isset($trending_categories))
                         <div class="right-bubble-container">
-                            <h5>Trending Categories</h5>
+                            <h5>{{__('main-layout.category-header')}}</h5>
                             <div class="right-bubble-content-wrapper">
                                 @foreach ($trending_categories as $category)
                                     <a href={{ route('explore_project_page', ['categories' => $category->id, 'locale' => App::getLocale()]) }} class="trending-category-wrapper">
                                         <div class="trending-category-name-wrapper">
                                             <p class="trending-category-text">{{$category->name}}</p>
-                                            <p class="trending-category-post-text">{{$category->projects->count()}} posts</p>
+                                            <p class="trending-category-post-text">{{$category->projects->count()}} {{__('main-layout.category-post')}}</p>
                                         </div>
                                         <div>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -45,7 +45,7 @@
                         @endif
                         @if (Auth::check() && isset($suggested_users))
                             <div class="right-bubble-container">
-                                <h5>Suggested Users</h5>
+                                <h5>{{__('main-layout.user-header')}}</h5>
                                 <div class="right-bubble-content-wrapper">
                                     @forelse ($suggested_users as $suggested_user)
                                     <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
@@ -55,15 +55,15 @@
                                             <img src="{{ asset('storage/' . $suggested_user->profile_picture) }}" alt="">
                                             <div class="trending-category-name-wrapper">
                                                 <p class="trending-category-text">{{$suggested_user->name}}</p>
-                                                <p class="trending-category-post-text">{{$suggested_user->projects->count()}} posts</p>
+                                                <p class="trending-category-post-text">{{$suggested_user->projects->count()}} {{__('main-layout.category-post')}}</p>
                                             </div>
                                         </div>
                                         <div class="right-suggested-user-container">
-                                            <button type="submit" class="btn btn-primary follow-btn">Follow</button>
+                                            <button type="submit" class="btn btn-primary follow-btn">{{__('main-layout.follow')}}</button>
                                         </div>
                                     </form>
                                     @empty
-                                        <p style="text-align: center;font-size:15px">No Suggested User Yet</p>
+                                        <p style="text-align: center;font-size:15px">{{__('main-layout.empty-user')}}</p>
                                     @endforelse
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Friends</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">{{__('main-layout.friends')}}</h5>
               <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -93,15 +93,16 @@
                         <img src="{{ asset('storage/' . $friend->profile_picture) }}" alt="">
                         <div class="trending-category-name-wrapper">
                             <p class="trending-category-text">{{$friend->name}}</p>
-                            <p class="trending-category-post-text">{{$friend->projects->count()}} posts</p>
+                            <p class="trending-category-post-text">{{$friend->projects->count()}} {{__('main-layout.category-post')}}</p>
                         </div>
                     </div>
                     <div class="right-suggested-user-container">
-                        <button type="submit" class="btn btn-primary remove-btn">Remove</button>
+                        <button type="submit" class="btn btn-primary remove-btn">{{__('main-layout.remove')}}</button>
                     </div>
                 </form>
+
                 @empty
-                    @include('partials.empty-message', ['message' => 'There is no friends yet!'])
+                    @include('partials.empty-message', ['message' => __('main-layout.empty-friend')])
                 @endforelse
               </div>
             </div>

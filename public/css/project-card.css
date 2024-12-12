@@ -157,5 +157,6 @@
     align-items: center;
     gap: 5px;
     color: var(--error-color);
+    font-size: 15px;
 }
 
