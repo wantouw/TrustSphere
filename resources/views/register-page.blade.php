@@ -16,6 +16,9 @@
                         <input class="input-field" type="text" id="fullName" name="name"
                             placeholder="Enter Full Name" value="{{ old('name') }}">
                     </div>
+                    @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="input-label" for="email">Email</label>
@@ -24,6 +27,9 @@
                         <input class="input-field" type="email" id="email" name="email" placeholder="Enter Email"
                             value="{{ old('email') }}">
                     </div>
+                    @error('email')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -33,6 +39,9 @@
                             <input class="input-field" type="password" id="password" name="password"
                                 placeholder="Password">
                         </div>
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="password_confirmation">Confirm Password</label>
@@ -41,6 +50,9 @@
                             <input class="input-field" type="password" id="password_confirmation"
                                 name="password_confirmation" placeholder="Confirm Password">
                         </div>
+                        @error('password_confirmation')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -52,17 +64,23 @@
                             <input class="input-field" type="date" id="dob" name="dob"
                                 value="{{ old('dob') }}">
                         </div>
+                        @error('dob')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="profile_picture">Profile Picture</label>
                         <div class="input-wrapper">
                             <input class="input-field" type="file" id="profile_picture" name="profile_picture">
                         </div>
+                        @error('profile_picture')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="input-label" for="dob">Phone Number</label>
+                        <label class="input-label" for="phone_number">Phone Number</label>
                         <div class="input-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor">
@@ -72,6 +90,9 @@
                             <input class="input-field" type="text" id="phone_number" name="phone_number" placeholder="Phone Number"
                                 value="{{ old('phone_number') }}">
                         </div>
+                        @error('phone_number')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label class="input-label" for="role">Role</label>
@@ -94,18 +115,11 @@
                             </div>
                             <input type="hidden" name="role_id" id="selectedRole" value="">
                         </div>
+                        @error('role_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
-
-                @if ($errors->any())
-                    <div class="error-message">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
 
                 <button class="submit-button" type="submit">Register</button>
 

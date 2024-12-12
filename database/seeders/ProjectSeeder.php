@@ -57,7 +57,7 @@ Beyond cleanup efforts, CleanWave works to restore marine habitats, such as cora
 Educational programs are a key component, teaching participants about the impacts of plastic pollution and the importance of sustainable practices. CleanWave advocates for policy changes to reduce single-use plastics and promote eco-friendly alternatives, creating a lasting impact on marine conservation efforts.'
             ],
         ];
-
+        $imageNumber = 1;
         foreach ($projects as $data) {
             $project = Project::create([
                 'title' => $data['title'],
@@ -66,8 +66,10 @@ Educational programs are a key component, teaching participants about the impact
             ]);
 
             $project->image_urls()->create([
-                'image_url' => 'images/projects/' . '1_1.jpeg',
+                'image_url' => 'images/projects/' . $imageNumber . '_1.jpeg',
             ]);
+
+            $imageNumber++;
 
             $project->categories()->sync([1, 2]);
         }
