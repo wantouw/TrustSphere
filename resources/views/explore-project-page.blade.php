@@ -17,7 +17,7 @@
             @forelse ($projects as $project)
                 @include('partials.project-card', ['project' => $project])
             @empty
-                @include('partials.empty-message', ['message' => 'No projects yet'])
+                @include('partials.empty-message', ['message' => __('project-card.empty-message')])
             @endforelse
         </div>
     </div>

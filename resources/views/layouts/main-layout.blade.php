@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         @endif
-                        @if (Auth::check() && isset($suggested_users))
+                        @if (Auth::check() && !Auth::user()->hasRole('admin') && isset($suggested_users))
                             <div class="right-bubble-container">
                                 <h5>{{__('main-layout.user-header')}}</h5>
                                 <div class="right-bubble-content-wrapper">

@@ -6,7 +6,7 @@
                 '<svg aria-label="Home" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Home</title><path d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>',
             'route' => route('home_page'),
             'active' => Request::is('/'),
-            'admin' => false,
+            'admin' => true,
         ],
         [
             'name' => __('navbar.explore'),
@@ -14,7 +14,7 @@
                 '<svg aria-label="Search" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24"><title>Search</title><path d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="16.511" x2="22" y1="16.511" y2="22"></line></svg>',
             'route' => route('explore_project_page'),
             'active' => Request::is('explore'),
-            'admin' => false,
+            'admin' => true,
         ],
         [
             'name' => __('navbar.my-projects'),
@@ -44,6 +44,7 @@
     </div>
     <div class="menu-wrapper">
         <ul class="nav-menu">
+            @if (!Auth::user()->hasRole('admin'))
             <div class="nav-list">
                 <a href="{{ route('create_project_page') }}" class="button" style="--clr: #7808d0">
                     <span class="button__icon-wrapper">
@@ -65,8 +66,9 @@
                 </a>
 
             </div>
+            @endif
             @foreach ($navItems as $item)
-                @if ($item['admin'] && !Auth::user()->hasRole('admin'))
+                @if (!$item['admin'] && Auth::user()->hasRole('admin'))
                 @else
                     <li class="nav-list {{ $item['active'] ? 'active' : '' }}">
                         <a href="{{ $item['route'] }}">
@@ -76,16 +78,18 @@
                     </li>
                 @endif
             @endforeach
-            <div class="nav-list">
-                <button type="button" class="friends-btn" data-bs-toggle="modal" data-bs-target="#friendsModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
-                    </svg>
-                    <p>{{__('navbar.friends')}}</p>
-                </button>
-            </div>
+            @if (!Auth::user()->hasRole('admin'))
+                <div class="nav-list">
+                    <button type="button" class="friends-btn" data-bs-toggle="modal" data-bs-target="#friendsModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                        </svg>
+                        <p>{{__('navbar.friends')}}</p>
+                    </button>
+                </div>
+            @endif
 
         </ul>
         <div class="dropup btn-group w-100 profile-dropdown">
@@ -109,15 +113,17 @@
                     </div>
                 </button>
                 <ul class="dropdown-menu">
-                    <li class="dropdown-item" style="border-bottom: 0.5px solid rgba(216, 216, 216, 0.837)">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                        </svg>
+                    @if (!Auth::user()->hasRole('admin'))
+                        <li class="dropdown-item" style="border-bottom: 0.5px solid rgba(216, 216, 216, 0.837)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg>
 
-                        <a href="">{{__('navbar.profile')}}</a>
-                    </li>
+                            <a href="">{{__('navbar.profile')}}</a>
+                        </li>
+                    @endif
                     <li class="dropdown-item">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf

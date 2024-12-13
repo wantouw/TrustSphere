@@ -326,3 +326,25 @@ svg{
     transform: translate(5px,5px);
     transition-duration: .3s;
   }
+
+  .admin-vote-container {
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .admin-vote-container p {
+    color: var(--muted-text-color) !important;
+  }
+  .admin-vote-container svg {
+    color: var(--muted-text-color);
+    width: 20px;
+    height: 20px;
+  }
+  .admin-vote-wrapper {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
