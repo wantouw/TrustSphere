@@ -111,24 +111,27 @@
                         urlParams.set('categories', selectedCategories.join(','));
                     } else {
                         urlParams.delete(
-                            'categories');
+                        'categories');
                     }
 
                     window.location.search = urlParams.toString();
                 });
             });
 
-
+            // Handle Status Filters (Toggle Group)
             statusFilters.forEach(filter => {
                 filter.addEventListener('click', () => {
                     const statusValue = filter.dataset.status;
                     const urlParams = new URLSearchParams(window.location.search);
 
+
                     if (filter.classList.contains('selected')) {
                         filter.classList.remove('selected');
                         urlParams.delete('is_safe');
                     } else {
+
                         statusFilters.forEach(f => f.classList.remove('selected'));
+
 
                         filter.classList.add('selected');
                         urlParams.set('is_safe', statusValue);

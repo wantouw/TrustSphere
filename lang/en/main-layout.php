@@ -6,6 +6,6 @@ return [
     'follow' => 'Follow',
     'empty-user' => 'No Suggested Users Yet',
     'friends' => 'Friends',
-    'remove' => 'Remove',
+    'remove' => 'Unfollow',
     'empty-friend' => 'There is no friends yet!',
 ];

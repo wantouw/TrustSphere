@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +22,18 @@ class ProfileController extends Controller
     public function user_profile_page($user_id)
     {
         $user = User::with('projects')->find($user_id);
+        $currentUser = Auth::user();
+
+        // dd($user_id, $currentUser->id);
+        if($user_id == $currentUser->id) return view('my-profile-page', ['user'=>$currentUser]);
+
+        $isFriends = Friend::where('user_id', $user_id)->where('friend_id', $currentUser->id)->exists();
 
         if (!$user) {
             abort(404, 'User not found');
         }
 
-        return view('user-profile-page', compact('user'));
+        return view('user-profile-page', compact('user', 'isFriends'));
     }
 
     public function update(Request $request)

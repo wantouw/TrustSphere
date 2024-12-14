@@ -10,7 +10,7 @@ return [
     'profile_picture_description' => 'Perbarui foto profil Anda untuk membuatnya lebih menarik.',
     'biography' => 'Biografi',
     'biography_description' => 'Bagikan pengenalan singkat untuk membantu orang lain mengenal Anda.',
-    'save_changes' => 'Simpan',
+    'save_changes' => 'Simpan Perubahan',
     'profile_updated' => 'Profil berhasil diperbarui!',
     'name_placeholder' => 'Masukkan nama lengkap Anda',
     'email_placeholder' => 'Masukkan email Anda',

@@ -89,7 +89,7 @@
                 <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
                     @csrf
                     <input type="hidden" name="friend_id" value="{{$friend->id}}">
-                    <a href="{{ route('user_profile_page', ['user_d'=> $friend->id]) }}"" class="left-suggested-user-container">
+                    <a href="{{ route('user_profile_page', ['user_id'=> $friend->id]) }}" class="left-suggested-user-container">
                         <img src="{{ asset('storage/' . $friend->profile_picture) }}" alt="">
                         <div class="trending-category-name-wrapper">
                             <p class="trending-category-text">{{$friend->name}}</p>

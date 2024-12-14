@@ -16,7 +16,7 @@
             <div class="profile-image-container">
                 <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture">
             </div>
-            <div class="profile-info">
+            <div class="profile-info" style="display: flex; flex-direction: column; gap: 5px; flex-grow: 1;">
                 <h1 class="header-name">{{ $user->name }}</h1>
                 <h3 class="header-role">{{ $user->role->name }}</h3>
                 <h3 class="header-email">{{ $user->email }}</h3>
@@ -29,7 +29,7 @@
                 <p class="profile-subheader">{{ __('my-profile.update_profile_info') }}</p>
             </div>
             <div class="divider"></div>
-            <form class="form-container" action="{{ route('update_profile') }}" method="POST" enctype="multipart/form-data">
+            <form class="form-container" style="margin: 0" action="{{ route('update_profile') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
