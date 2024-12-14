@@ -14,3 +14,4 @@ class Friend extends Model
         'friend_id',
     ];
 }
+

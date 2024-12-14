@@ -6,9 +6,12 @@
     <div class="content">
         <section class="form-container">
             <h1 class="content-header">TrustSphere.</h1>
+            <div class="form-header-wrapper">
+                <h2 class="form-header">{{__('register.form_header')}}</h2>
+                @include('partials.language-changer')
+            </div>
             <form class="form-section" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <h2 class="form-header">{{ __('register.form_header') }}</h2>
                 <div class="form-group">
                     <label class="input-label" for="fullName">{{ __('register.full_name') }}</label>
                     <div class="input-wrapper">
@@ -110,7 +113,7 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach ($roles as $role)
-                                    <a class="dropdown-item" href="#" data-value="{{$role->id}}">{{ $role->name }}</a>
+                                    <a class="dropdown-item roles" href="#" data-value="{{$role->id}}">{{ $role->name }}</a>
                                 @endforeach
                             </div>
                             <input type="hidden" name="role_id" id="selectedRole" value="">
@@ -150,7 +153,7 @@
 
 @section('scripts')
     <script>
-        document.querySelectorAll('.dropdown-item').forEach(item => {
+        document.querySelectorAll('.roles').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
                 const selectedValue = this.getAttribute('data-value');

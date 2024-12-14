@@ -31,10 +31,10 @@ class CommentController extends Controller
         $data = $response->json();
         $prediction = $data['prediction'] ?? '-';
 
-        $existingComment = Comment::where('project_id', $validated['project_id'])->where('sender_id', Auth::id())->first();
+        $existingComment = Comment::where('project_id', $validated['project_id'])
+            ->where('sender_id', Auth::id())->first();
 
         if ($existingComment) {
-            // Update the existing comment
             DB::table('comments')
                 ->where('project_id', $validated['project_id'])
                 ->where('sender_id', Auth::id())
@@ -44,7 +44,6 @@ class CommentController extends Controller
                     'updated_at' => now(),
                 ]);
         } else {
-            // Create a new comment
             Comment::create([
                 'project_id' => $validated['project_id'],
                 'sender_id' => Auth::id(),
@@ -53,7 +52,8 @@ class CommentController extends Controller
             ]);
         }
         $project = Project::find($validated['project_id']);
-        return redirect()->route('project_detail_page', ['project_id' => $request->project_id])->with(compact('project'));
+        return redirect()->route('project_detail_page', ['project_id' => $request->project_id])
+                ->with(compact('project'));
     }
 
     public function delete_comment(int $project_id)

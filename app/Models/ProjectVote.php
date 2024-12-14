@@ -16,3 +16,4 @@ class ProjectVote extends Model
     ];
 
 }
+

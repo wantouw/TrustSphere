@@ -32,7 +32,6 @@
 }
 
 .form-section {
-    margin-top: 36px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -375,4 +374,28 @@
 
 .input-wrapper .dropdown-menu {
     --bs-dropdown-min-width: 18rem;
+}
+
+.form-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+}
+
+.lang-dropdown .dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.lang-dropdown a {
+        color: transparent;
+        text-decoration: none;
+        cursor: pointer;
+}
+
+.lang-dropdown svg {
+    width: 15px;
+    height: 15px;
+    color: gray;
 }

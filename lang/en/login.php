@@ -1,12 +1,12 @@
 <?php
 return [
-    'sign-in' => 'Masuk',
-    'email-placeholder' => 'Masukkan email',
-    'password-label' => 'Kata Sandi',
-    'password-placeholder' => 'Masukkan kata sandi',
-    'register-redirect' => 'Daftar Sekarang',
-    'promo-header' => 'Menghubungkan ide dengan peluang, mengubah visi menjadi kenyataan.',
-    'or' => 'Atau',
-    'total-projects-label' => 'Proyek yang Didanai',
-    'projects-label-money' => 'Dana untuk Proyek',
+    'sign-in' => 'Login',
+    'email-placeholder' => 'Enter Email',
+    'password-label' => 'Password',
+    'password-placeholder' => 'Enter Password',
+    'register-redirect' => 'Register Now',
+    'promo-header' => 'Connecting ideas with opportunities, turning visions into reality.',
+    'or' => 'Or',
+    'total-projects-label' => 'Projects Funded',
+    'projects-label-money' => 'Funded to Projects',
 ];

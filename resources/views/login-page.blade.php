@@ -7,9 +7,12 @@
     <div class="content">
         <section class="form-container">
             <h1 class="content-header">TrustSphere.</h1>
+            <div class="form-header-wrapper">
+                <h2 class="form-header">{{__('login.sign-in')}}</h2>
+                @include('partials.language-changer')
+            </div>
             <form class="form-section" action="{{ route('login') }}" method="POST">
                 @csrf
-                <h2 class="form-header">{{__('login.sign-in')}}</h2>
                 <div class="form-group">
                     <label class="input-label" for="email">Email</label>
                     <div class="input-wrapper">

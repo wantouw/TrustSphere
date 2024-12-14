@@ -22,7 +22,7 @@ class Project extends Model
         $positiveComments = $this->comments()->where('type', 'positive')->count();
         $negativeComments = $this->comments()->where('type', 'negative')->count();
 
-        return $positiveComments >= $negativeComments || ( $positiveComments == 0 && $negativeComments == 0);
+        return $positiveComments >= $negativeComments || ($positiveComments == 0 && $negativeComments == 0);
     }
 
     public function user(): BelongsTo
@@ -32,7 +32,8 @@ class Project extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'project_categories', 'project_id', 'category_id');
+        return $this->belongsToMany(Category::class,
+        'project_categories', 'project_id', 'category_id');
     }
 
     public function image_urls(): HasMany

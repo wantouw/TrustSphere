@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Category extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name'
+    ];
     public function projects() : BelongsToMany {
         return $this->belongsToMany(
             Project::class,
@@ -19,3 +21,5 @@ class Category extends Model
         );
     }
 }
+
+

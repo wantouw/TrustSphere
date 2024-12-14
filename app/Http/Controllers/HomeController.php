@@ -35,3 +35,5 @@ class HomeController extends Controller
         return view('home-page', compact('projects', 'trending_categories', 'suggested_users'));
     }
 }
+
+

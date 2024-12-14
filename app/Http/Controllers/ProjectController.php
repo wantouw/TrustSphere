@@ -52,30 +52,7 @@ class ProjectController extends Controller
 
         return view('explore-project-page', compact('projects', 'categories', 'selectedCategories', 'searchQuery'));
     }
-    public function liked_projects_page()
-    {
-        $trending_categories = Category::withCount(['projects' => function ($query) {
-            $query->where('projects.created_at', '>=', now()->subMonth());
-        }])
-            ->orderBy('projects_count', 'desc')
-            ->take(10)
-            ->get();
-        $currentUserId = Auth::id();
-        $suggested_users = User::whereNotIn('id', function ($query) use ($currentUserId) {
-            $query->select('friend_id')
-                ->from('friends')
-                ->where('user_id', $currentUserId);
-        })
-            ->whereNotIn('role_id', function ($query) {
-                $query->select('id')
-                    ->from('roles')
-                    ->where('name', '=', 'admin');
-            })
-            ->where('id', '!=', $currentUserId)
-            ->get();
-        $projects = Auth::user()->liked_projects;
-        return view('liked-projects-page', compact('projects', 'suggested_users', 'trending_categories'));
-    }
+
     public function  my_projects_page()
     {
         $trending_categories = Category::withCount(['projects' => function ($query) {
@@ -158,9 +135,7 @@ class ProjectController extends Controller
         }
 
         $project->categories()->sync($validated['categories']);
-        return response()->json([
-            'project' => $project->toArray()
-        ], 201)->header('Content-Type', 'application/json');
+        return redirect()->route('home_page');
     }
 
     public function search_project_page(Request $request)
