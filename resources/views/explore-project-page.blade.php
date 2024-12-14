@@ -61,15 +61,18 @@
                 <div class="sort-options">
                     <label class="sort-option">
                         {{ __('search.sort.relevance') }}
-                        <input type="radio" name="sort" value="relevance" checked>
+                        <input type="radio" name="sort" value="relevance"
+                            {{ request()->get('sort', 'relevance') === 'relevance' ? 'checked' : '' }}>
                     </label>
                     <label class="sort-option">
                         {{ __('search.sort.popularity') }}
-                        <input type="radio" name="sort" value="popularity">
+                        <input type="radio" name="sort" value="popularity"
+                            {{ request()->get('sort') === 'popularity' ? 'checked' : '' }}>
                     </label>
                     <label class="sort-option">
                         {{ __('search.sort.most_liked') }}
-                        <input type="radio" name="sort" value="most-liked">
+                        <input type="radio" name="sort" value="most-liked"
+                            {{ request()->get('sort') === 'most-liked' ? 'checked' : '' }}>
                     </label>
                 </div>
             </div>
@@ -86,6 +89,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const categoryFilters = document.querySelectorAll('.filter[data-category-id]');
             const statusFilters = document.querySelectorAll('.status-filter');
+            const sortOptions = document.querySelectorAll('input[name="sort"]');
 
             categoryFilters.forEach(filter => {
                 filter.addEventListener('click', () => {
@@ -107,33 +111,37 @@
                         urlParams.set('categories', selectedCategories.join(','));
                     } else {
                         urlParams.delete(
-                        'categories');
+                            'categories');
                     }
 
                     window.location.search = urlParams.toString();
                 });
             });
 
-            // Handle Status Filters (Toggle Group)
+
             statusFilters.forEach(filter => {
                 filter.addEventListener('click', () => {
                     const statusValue = filter.dataset.status;
                     const urlParams = new URLSearchParams(window.location.search);
 
-                    // Toggle selection
                     if (filter.classList.contains('selected')) {
                         filter.classList.remove('selected');
-                        urlParams.delete('is_safe'); // Remove query if deselected
+                        urlParams.delete('is_safe');
                     } else {
-                        // Unselect other filters
                         statusFilters.forEach(f => f.classList.remove('selected'));
 
-                        // Select the clicked filter
                         filter.classList.add('selected');
-                        urlParams.set('is_safe', statusValue); // Set query param
+                        urlParams.set('is_safe', statusValue);
                     }
 
-                    // Reload the page with updated query parameters
+                    window.location.search = urlParams.toString();
+                });
+            });
+
+            sortOptions.forEach(option => {
+                option.addEventListener('change', () => {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('sort', option.value);
                     window.location.search = urlParams.toString();
                 });
             });

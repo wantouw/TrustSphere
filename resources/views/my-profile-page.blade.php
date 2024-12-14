@@ -1,6 +1,6 @@
 @extends('layouts.main-layout')
 
-@section('title', 'Edit Profile')
+@section('title', __('my-profile.edit_profile'))
 @section('css-link')
     <link rel="stylesheet" href="{{ asset('css/my-profile-page.css') }}">
 @endsection
@@ -9,7 +9,7 @@
     <div class="reset-container">
         @if (session('success'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                {{ __('my-profile.profile_updated') }}
             </div>
         @endif
         <div class="top-section">
@@ -18,13 +18,15 @@
             </div>
             <div class="profile-info">
                 <h1 class="header-name">{{ $user->name }}</h1>
-                <h3 class="header-role">{{ $user->email }}</h3>
+                <h3 class="header-role">{{ $user->role->name }}</h3>
+                <h3 class="header-email">{{ $user->email }}</h3>
+                <p class="header-bio">{{ $user->bio }}</p>
             </div>
         </div>
         <div class="profile-section">
             <div class="header-profile">
-                <h1 class="profile-header">Your Profile</h1>
-                <p class="profile-subheader">Update your profile information here.</p>
+                <h1 class="profile-header">{{ __('my-profile.your_profile') }}</h1>
+                <p class="profile-subheader">{{ __('my-profile.update_profile_info') }}</p>
             </div>
             <div class="divider"></div>
             <form class="form-container" action="{{ route('update_profile') }}" method="POST" enctype="multipart/form-data">
@@ -33,17 +35,17 @@
 
                 <div class="profile-form-group">
                     <div class="group-header-section">
-                        <h3 class="group-header">Public Profile</h3>
-                        <p class="group-subheader">This information will be displayed publicly.</p>
+                        <h3 class="group-header">{{ __('my-profile.public_profile') }}</h3>
+                        <p class="group-subheader">{{ __('my-profile.public_profile_description') }}</p>
                     </div>
                     <div class="group-form-section">
                         <div class="profile-input-wrapper">
                             <i class="fa-regular fa-user icon"></i>
-                            <input class="input-field" type="text" id="username" name="name" value="{{ old('name', $user->name) }}" placeholder="Enter your full name">
+                            <input class="input-field" type="text" id="username" name="name" value="{{ old('name', $user->name) }}" placeholder="{{ __('my-profile.name_placeholder') }}">
                         </div>
                         <div class="profile-input-wrapper">
                             <i class="fa-regular fa-envelope icon"></i>
-                            <input class="input-field" type="email" id="email" name="email" value="{{ old('email', $user->email) }}" placeholder="Enter your email">
+                            <input class="input-field" type="email" id="email" name="email" value="{{ old('email', $user->email) }}" placeholder="{{ __('my-profile.email_placeholder') }}">
                         </div>
                     </div>
                 </div>
@@ -51,8 +53,8 @@
 
                 <div class="profile-form-group">
                     <div class="group-header-section">
-                        <h3 class="group-header">Profile Picture</h3>
-                        <p class="group-subheader">Update your profile picture to personalize your profile and make it more engaging.</p>
+                        <h3 class="group-header">{{ __('my-profile.profile_picture') }}</h3>
+                        <p class="group-subheader">{{ __('my-profile.profile_picture_description') }}</p>
                     </div>
                     <div class="group-form-section">
                         <div class="profile-image-container preview-container">
@@ -61,7 +63,7 @@
                         <div class="upload-field">
                             <label for="profile-picture" class="upload-label">
                                 <i class="fa-regular fa-image icon"></i>
-                                <span>Upload New Profile Picture</span>
+                                <span>{{ __('my-profile.profile_picture') }}</span>
                             </label>
                             <input class="input-field" type="file" id="profile-picture" name="profile_picture" accept="image/*" onchange="previewProfilePicture(event)">
                         </div>
@@ -71,16 +73,16 @@
 
                 <div class="profile-form-group">
                     <div class="group-header-section">
-                        <h3 class="group-header">Biography</h3>
-                        <p class="group-subheader">Share a brief introduction to let others know more about you.</p>
+                        <h3 class="group-header">{{ __('my-profile.biography') }}</h3>
+                        <p class="group-subheader">{{ __('my-profile.biography_description') }}</p>
                     </div>
                     <div class="group-form-section">
                         <div class="profile-input-wrapper biography-input-wrapper">
-                            <textarea class="input-field biography-field" id="biography" name="bio" rows="4" placeholder="Write a short biography here...">{{ old('bio', $user->bio) }}</textarea>
+                            <textarea class="input-field biography-field" id="biography" name="bio" rows="4" placeholder="{{ __('my-profile.bio_placeholder') }}">{{ old('bio', $user->bio) }}</textarea>
                         </div>
                     </div>
                 </div>
-                <button class="submit-button">Save Changes</button>
+                <button class="submit-button">{{ __('my-profile.save_changes') }}</button>
             </form>
         </div>
     </div>

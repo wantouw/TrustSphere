@@ -12,10 +12,10 @@
                 <div class="owner-container">
                     <img class="owner-picture" src="{{ asset('storage/' . $project->user->profile_picture) }}"
                         alt="Profile Picture">
-                    <div>
+                    <a href="{{ route('user_profile_page', ['user_id' => $project->user->id]) }}">
                         <p class="owner-name">{{ $project->user->name }}</p>
                         <p class="owner-role">{{ Str::ucfirst($project->user->role->name) }}</p>
-                    </div>
+                    </a>
                 </div>
                 @if (Auth::user()->hasRole('admin'))
                     <form class="delete-btn-container" method="POST"

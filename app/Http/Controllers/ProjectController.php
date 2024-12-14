@@ -25,6 +25,7 @@ class ProjectController extends Controller
         $selectedCategories = $request->get('categories', []);
         $searchQuery = $request->get('search', '');
         $isSafe = $request->get('is_safe', null);
+        $sort = $request->get('sort', 'relevance');
 
         if (is_string($selectedCategories)) {
             $selectedCategories = explode(',', $selectedCategories);
@@ -38,6 +39,15 @@ class ProjectController extends Controller
             ->when($searchQuery, function ($query) use ($searchQuery) {
                 $query->where('title', 'like', '%' . $searchQuery . '%')
                     ->orWhere('description', 'like', '%' . $searchQuery . '%');
+            })
+            ->when($sort === 'relevance', function ($query) {
+                $query->orderBy('created_at', 'desc');
+            })
+            ->when($sort === 'popularity', function ($query) {
+                $query->withCount('project_views')->orderBy('project_views_count', 'desc');
+            })
+            ->when($sort === 'most-liked', function ($query) {
+                $query->withCount('user_likes')->orderBy('user_likes_count', 'desc');
             })
             ->get();
 

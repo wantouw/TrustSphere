@@ -42,12 +42,25 @@
 }
 
 .profile-info .header-name {
-    font-size: 24px;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--text-color);
 }
 
+.profile-info .header-bio {
+    margin-top: 24px;
+    /* font-weight: 600; */
+    font-size: 1rem;
+    color: var(--muted-text-color);
+}
+
 .profile-info .header-role {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent-color);
+}
+
+.profile-info .header-email {
     font-size: 16px;
     font-weight: 500;
     color: var(--muted-text-color);
@@ -95,8 +108,7 @@
 }
 
 .profile-form-group .group-header-section {
-    flex-basis: 20%;
-    flex: 1;
+    flex-basis: 40%;
     display: flex;
     flex-direction: column;
 }

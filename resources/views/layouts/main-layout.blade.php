@@ -53,10 +53,10 @@
                                         <input type="hidden" name="friend_id" value="{{$suggested_user->id}}">
                                         <div class="left-suggested-user-container">
                                             <img src="{{ asset('storage/' . $suggested_user->profile_picture) }}" alt="">
-                                            <div class="trending-category-name-wrapper">
+                                            <a href="{{ route('user_profile_page', ['user_id'=> $suggested_user->id]) }}" class="trending-category-name-wrapper">
                                                 <p class="trending-category-text">{{$suggested_user->name}}</p>
                                                 <p class="trending-category-post-text">{{$suggested_user->projects->count()}} {{__('main-layout.category-post')}}</p>
-                                            </div>
+                                            </a>
                                         </div>
                                         <div class="right-suggested-user-container">
                                             <button type="submit" class="btn btn-primary follow-btn">{{__('main-layout.follow')}}</button>
@@ -89,13 +89,13 @@
                 <form action="{{route('follow_friend')}}" method="POST" class="suggested-user-card">
                     @csrf
                     <input type="hidden" name="friend_id" value="{{$friend->id}}">
-                    <div class="left-suggested-user-container">
+                    <a href="{{ route('user_profile_page', ['user_d'=> $friend->id]) }}"" class="left-suggested-user-container">
                         <img src="{{ asset('storage/' . $friend->profile_picture) }}" alt="">
                         <div class="trending-category-name-wrapper">
                             <p class="trending-category-text">{{$friend->name}}</p>
                             <p class="trending-category-post-text">{{$friend->projects->count()}} {{__('main-layout.category-post')}}</p>
                         </div>
-                    </div>
+                    </a>
                     <div class="right-suggested-user-container">
                         <button type="submit" class="btn btn-primary remove-btn">{{__('main-layout.remove')}}</button>
                     </div>

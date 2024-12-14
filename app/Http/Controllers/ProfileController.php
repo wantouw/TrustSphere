@@ -18,6 +18,17 @@ class ProfileController extends Controller
         return view('my-profile-page', compact('user'));
     }
 
+    public function user_profile_page($user_id)
+    {
+        $user = User::with('projects')->find($user_id);
+
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+
+        return view('user-profile-page', compact('user'));
+    }
+
     public function update(Request $request)
     {
         $user = User::find(Auth::id());
