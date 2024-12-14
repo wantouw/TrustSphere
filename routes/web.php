@@ -36,6 +36,7 @@ Route::middleware(['locale'])->group(function () {
             Route::get('/my-profile', [ProfileController::class, 'my_profile_page'])->name('my_profile_page');
         });
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::put('/profile/update', [ProfileController::class, 'update'])->name('update_profile');
         Route::get('/', [HomeController::class, 'home_page'])->name('home_page');
         Route::get('/explore', [ProjectController::class, 'explore_project_page'])->name('explore_project_page');
         Route::delete('/project/delete/{project_id}', [ProjectController::class, 'delete_project'])->name('delete_project')->middleware('admin');
