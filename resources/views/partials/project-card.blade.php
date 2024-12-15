@@ -58,7 +58,7 @@
 
         </div>
     </div>
-    @if (Auth::check())
+    @if (Auth::check() && Auth::user()->role->name!='admin')
         <form action="{{ route('like_project') }}" method="POST">
             @csrf
             <button type="submit" class="like-btn-container">
