@@ -24,7 +24,6 @@ class ProfileController extends Controller
         $user = User::with('projects')->find($user_id);
         $currentUser = Auth::user();
 
-        // dd($user_id, $currentUser->id);
         if($user_id == $currentUser->id) return view('my-profile-page', ['user'=>$currentUser]);
 
         $isFriends = Friend::where('user_id', $user_id)->where('friend_id', $currentUser->id)->exists();
@@ -39,9 +38,6 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = User::find(Auth::id());
-        // if (!$user) {
-        //     abort(404, 'User not found');
-        // }
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',

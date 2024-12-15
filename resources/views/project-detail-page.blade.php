@@ -63,7 +63,7 @@
                 @endif
             </div>
             <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
-                @if (Auth::check())
+                @if (Auth::check() && Auth::user()->role->name!='admin')
                     <form action="{{ route('like_project') }}" method="POST">
                         @csrf
                         <button type="submit" class="like-btn-container">
