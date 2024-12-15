@@ -24,7 +24,7 @@ class CommentController extends Controller
             'project_id' => 'required|exists:projects,id'
         ]);
 
-        $response = Http::post('http://localhost:5050/predict', [
+        $response = Http::post('https://trustsphere-ai.fly.dev/predict', [
             'review' => $validated['comment'],
         ]);
 
