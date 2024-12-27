@@ -4,7 +4,9 @@ FROM php:8.2-apache
 RUN apt-get update && \
     apt-get install -y \
     libzip-dev \
-    zip
+    zip \
+    nodejs \
+    npm
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
@@ -28,8 +30,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install project dependencies
 RUN composer install
 
+# Install node modules for Vite
+RUN npm install
+
+# Build assets for production
+RUN npm run build
+
 # Create the storage symbolic link
 RUN php artisan storage:link
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Expose Vite development port (optional, for development)
+EXPOSE 5173

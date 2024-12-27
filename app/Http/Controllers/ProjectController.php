@@ -140,6 +140,8 @@ class ProjectController extends Controller
                     'image_url' => $filePath,
                     'project_id' => $project->id
                 ]);
+
+                
                 $i++;
             }
         }

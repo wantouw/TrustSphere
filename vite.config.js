@@ -9,4 +9,13 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // server: {
+    //     host: '0.0.0.0',
+    //     hmr: {
+    //         host: 'https://trustsphere-webapp.azurewebsites.net',
+    //     },
+    // },
+    build: {
+        outDir: 'public/build',
+    },
 });
